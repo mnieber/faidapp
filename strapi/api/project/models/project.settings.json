@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "uid": {
-      "type": "uid",
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true
@@ -28,6 +24,11 @@
     },
     "organization": {
       "model": "organization"
+    },
+    "uid": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

@@ -1,11 +1,17 @@
-FROM node:14-alpine
+FROM python:3
+
+# update pip
+RUN pip install --upgrade pip
 
 # install dev pkg dependencies
-RUN apk update && apk add \
+RUN apt-get update && apt-get install -y \
     fish                ` # via :fish` \
-    nano \
-    curl \
-    make \
-    postgresql-client
+    make                ` # via :makefile` \
+    nano
+
+# install dev pip dependencies
+RUN pip install \
+    isort               ` # via :isort` \
+    pip-tools           ` # via :pip-compile`
 
 WORKDIR /app/src

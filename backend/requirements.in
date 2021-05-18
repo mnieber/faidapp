@@ -1,0 +1,11 @@
+django-cors-headers
+django-environ
+django-graphql-auth
+Django
+psycopg2
+graphene-django
+slackclient
+pydantic
+requests
+munch
+dateparser

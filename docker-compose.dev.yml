@@ -10,13 +10,19 @@ services:
     - postgres
     env_file:
     - ./env/postgres.env
+    - ./env/backend.env
     image: faidapp_backend_dev
     ports:
-    - 1234:1234
-    - 9231:9231
+    - 8000:8000
     volumes:
     - ./backend:/app/src
+    - $HOME/.config/pudb:/root/.config/pudb
     - /opt/faidapp/backend/fish_history:/root/.local/share/fish/fish_history
+    - /opt/faidapp/backend/pytest_report.html:/app/pytest_report.html
+    - /opt/faidapp/backend/assets:/app/assets
+    - /opt/faidapp/backend/ipython:/root/.ipython
+    - backend_site_packages:/usr/local/lib/python3.9/site-packages
+    - backend_usr_local_bin:/usr/local/bin
   frontend:
     build:
       context: ./frontend
@@ -56,4 +62,6 @@ services:
     - ./strapi:/srv/app/src
     - /opt/faidapp/strapi/fish_history:/root/.local/share/fish/fish_history
 volumes:
+  backend_site_packages: {}
+  backend_usr_local_bin: {}
   postgres_data: {}

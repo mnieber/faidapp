@@ -1,8 +1,18 @@
 runserver:
-	node index.js
+	python manage.py runserver 0.0.0.0:8000
 
-debugserver:
-	node_modules/.bin/nodemon --inspect=0.0.0.0:9231 --no-lazy dist/index.js
+pip-compile:
+	pip-compile requirements.in -o requirements.txt
+	pip-compile requirements.dev.in -o requirements.dev.txt
 
-build:
-	node_modules/.bin/babel ./src -d dist --watch
+install:
+	pip install -r requirements.dev.txt
+
+set-superuser:
+	python manage.py createsuperuser
+
+show-urls:
+	python manage.py show_urls
+
+shell:
+	python manage.py shell_plus
