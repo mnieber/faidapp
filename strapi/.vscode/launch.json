@@ -1,0 +1,23 @@
+{
+    "configurations": [
+    {
+        "type": "node",
+        "request": "attach",
+        "name": "Docker: strapi",
+        "remoteRoot": "/srv/app/src",
+        "localRoot": "/home/maarten/projects/faid/faidapp/src/strapi",
+        "port": 9230,
+        "trace": true
+    },
+    {
+        "type": "node",
+        "request": "attach",
+        "name": "Docker: backend",
+        "remoteRoot": "/app/src",
+        "localRoot": "/home/maarten/projects/faid/faidapp/src/backend",
+        "outFiles": ["/home/maarten/projects/faid/faidapp/src/backend/dist"],
+        "port": 9231,
+        "trace": true
+    }
+    ]
+}

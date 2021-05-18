@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/changemakers",
+      "handler": "changemaker.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/changemakers/count",
+      "handler": "changemaker.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/changemakers/:id",
+      "handler": "changemaker.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/changemakers",
+      "handler": "changemaker.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/changemakers/:id",
+      "handler": "changemaker.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/changemakers/:id",
+      "handler": "changemaker.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

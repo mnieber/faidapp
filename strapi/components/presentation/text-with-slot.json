@@ -1,0 +1,18 @@
+{
+  "collectionName": "text_with_slots",
+  "info": {
+    "name": "TextWithSlot",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "slot": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hidden.slot"
+    }
+  }
+}

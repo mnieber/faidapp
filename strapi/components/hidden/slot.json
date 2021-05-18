@@ -1,0 +1,23 @@
+{
+  "collectionName": "slots",
+  "info": {
+    "name": "Slot",
+    "icon": "chess-board",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "changemaker": {
+      "model": "changemaker"
+    },
+    "milestone": {
+      "model": "milestone"
+    },
+    "organization": {
+      "model": "organization"
+    },
+    "project": {
+      "model": "project"
+    }
+  }
+}

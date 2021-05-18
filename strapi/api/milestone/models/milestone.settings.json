@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "milestones",
+  "info": {
+    "name": "Milestone"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uid": {
+      "type": "uid",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "dynamiczone",
+      "components": []
+    },
+    "project": {
+      "model": "project"
+    }
+  }
+}

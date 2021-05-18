@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "changemakers",
+  "info": {
+    "name": "Changemaker",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uid": {
+      "type": "uid"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

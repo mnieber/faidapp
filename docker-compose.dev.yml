@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command: sleep infinity
+    depends_on:
+    - postgres
+    env_file:
+    - ./env/postgres.env
+    image: faidapp_backend_dev
+    ports:
+    - 1234:1234
+    - 9231:9231
+    volumes:
+    - ./backend:/app/src
+    - /opt/faidapp/backend/fish_history:/root/.local/share/fish/fish_history
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    command: sleep infinity
+    depends_on: []
+    image: faidapp_frontend_dev
+    ports:
+    - 3000:3000
+    volumes:
+    - ./frontend:/app/src
+  postgres:
+    depends_on: []
+    env_file:
+    - ./env/postgres.env
+    image: postgres:11.5
+    ports:
+    - 5432:5432
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+  strapi:
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile.dev
+    command: sleep infinity
+    depends_on:
+    - postgres
+    env_file:
+    - ./env/strapi.env
+    - ./env/postgres.env
+    image: faidapp_strapi_dev
+    ports:
+    - 1337:1337
+    - 9229:9229
+    - 9230:9230
+    volumes:
+    - ./strapi:/srv/app/src
+    - /opt/faidapp/strapi/fish_history:/root/.local/share/fish/fish_history
+volumes:
+  postgres_data: {}
