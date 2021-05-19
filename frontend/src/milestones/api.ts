@@ -11,13 +11,11 @@ export function getMilestones() {
   const vars = {};
   return doQuery(query, vars).then((response) => {
     return {
-      milestones: flow(
-        always(response.milestones),
-      )(),
+      milestones: flow(always(response.milestones))(),
     };
   });
 }
 
 export function saveMilestone(values: any) {
-    console.log("TODO: save", values);
+  console.log('TODO: save', values);
 }

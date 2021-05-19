@@ -11,13 +11,11 @@ export function getProjects() {
   const vars = {};
   return doQuery(query, vars).then((response) => {
     return {
-      projects: flow(
-        always(response.projects),
-      )(),
+      projects: flow(always(response.projects))(),
     };
   });
 }
 
 export function saveProject(values: any) {
-    console.log("TODO: save", values);
+  console.log('TODO: save', values);
 }

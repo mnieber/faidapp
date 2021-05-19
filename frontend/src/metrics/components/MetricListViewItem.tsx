@@ -3,14 +3,15 @@ import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { MetricT } from 'src/metrics/types';
 
-import "./MetricListViewItem.scss"
+import './MetricListViewItem.scss';
 
 export type PropsT = {
   metric: MetricT;
   className?: any;
 };
 
-export const MetricListViewItem: React.FC<PropsT> = observer((props: PropsT) => {
+export const MetricListViewItem: React.FC<PropsT> = observer(
+  (props: PropsT) => {
   return (
     <div
       className={classnames(
@@ -21,4 +22,5 @@ export const MetricListViewItem: React.FC<PropsT> = observer((props: PropsT) => 
         {props.metric.name}
     </div>
   );
-});
+  }
+);

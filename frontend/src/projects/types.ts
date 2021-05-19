@@ -1,7 +1,7 @@
 export type ProjectT = {
-    id: string,
-    name: string
-}
+  id: string;
+  name: string;
+  slug: string;
+};
 
-export type ProjectByIdT = {[id:string]: ProjectT};
-
+export type ProjectByIdT = { [id: string]: ProjectT };

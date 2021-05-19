@@ -1,7 +1,6 @@
 export type MilestoneT = {
-    id: string,
-    name: string
-}
+  id: string;
+  name: string;
+};
 
-export type MilestoneByIdT = {[id:string]: MilestoneT};
-
+export type MilestoneByIdT = { [id: string]: MilestoneT };

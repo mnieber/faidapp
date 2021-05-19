@@ -7,8 +7,6 @@ export const StoreContext = React.createContext<AppStore>(appStore);
 
 export const StoreProvider: React.FC = ({ children }) => {
   return (
-    <StoreContext.Provider value={appStore}>
-      {children}
-    </StoreContext.Provider>
+    <StoreContext.Provider value={appStore}>{children}</StoreContext.Provider>
   );
 };

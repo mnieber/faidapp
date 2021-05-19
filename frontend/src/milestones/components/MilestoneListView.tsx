@@ -4,30 +4,27 @@ import { useDefaultProps, FC } from 'react-default-props-context';
 import { ResourceView } from 'src/utils/components';
 import { MilestoneListViewItem } from 'src/milestones/components';
 import { RST } from 'src/utils/RST';
-import { MilestoneT } from 'src/milestones/types'
+import { MilestoneT } from 'src/milestones/types';
+import classnames from 'classnames';
 
-import "./MilestoneListView.scss"
+import './MilestoneListView.scss';
 
 type PropsT = {
   className?: any;
 };
 
 type DefaultPropsT = {
-  milestones: MilestoneT[]
-  milestonesRS: RST
+  milestones: MilestoneT[];
+  milestonesRS: RST;
 };
 
-export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
+export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
+  (p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
   const milestoneDivs = flow(
     always(props.milestones),
-    map((x) => (
-      <MilestoneListViewItem
-        key={x.id}
-        milestone={x}
-      />
-    ))
+      map((x) => <MilestoneListViewItem key={x.id} milestone={x} />)
   )();
 
   const noItems = <h2>There are no milestones</h2>;
@@ -35,7 +32,7 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer((p: PropsT)
   const updatedDiv = (
     <div
       className={classnames(
-        "MilestoneListView flex flex-col w-full",
+          'MilestoneListView flex flex-col w-full',
         props.className
       )}
     >
@@ -53,4 +50,5 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer((p: PropsT)
       }}
     />
   );
-});
+  }
+);

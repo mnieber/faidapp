@@ -1,23 +1,22 @@
 import { observable, makeObservable } from 'mobx';
-import { ProjectsStore } from 'src/projects/ProjectsStore';
+import { ProjectStore } from 'src/projects/ProjectStore';
 import { MilestonesStore } from 'src/milestones/MilestonesStore';
 import { MetricsStore } from 'src/metrics/MetricsStore';
 
 export class AppStore {
-  @observable projectsStore: ProjectsStore;
+  @observable projectStore: ProjectStore;
   @observable milestonesStore: MilestonesStore;
   @observable metricsStore: MetricsStore;
 
   constructor() {
     makeObservable(this);
 
-    this.projectsStore = new ProjectsStore();
+    this.projectStore = new ProjectStore();
     this.milestonesStore = new MilestonesStore();
     this.metricsStore = new MetricsStore();
 
     this.applyPolicies();
   }
 
-  applyPolicies() {
-  }
+  applyPolicies() {}
 }

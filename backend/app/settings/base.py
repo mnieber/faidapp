@@ -1,9 +1,5 @@
 from __future__ import absolute_import, unicode_literals
 
-import datetime
-import os
-import sys
-
 import environ
 
 from .sections.auth import *

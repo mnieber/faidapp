@@ -9,5 +9,4 @@ export class Outputs {
   @computed get milestoneById(): MilestoneByIdT {
     return listToItemById(this.milestonesDisplay);
   }
-
 }

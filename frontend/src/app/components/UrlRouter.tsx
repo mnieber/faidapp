@@ -2,8 +2,8 @@ import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { createBrowserHistory } from 'history';
-import { projectPageView } from 'src/projects/components'
-import { milestoneListView } from 'src/milestones/components'
+import { ProjectView, LoadProjectEffect } from 'src/projects/components';
+import { ProjectStateProvider } from 'src/projects/components';
 
 type PropsT = {};
 
@@ -13,12 +13,12 @@ export const UrlRouter: React.FC<PropsT> = observer((props: PropsT) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/projectPage/">
-          <ProjectPageView/>
-        </Route>
-        <Route path="/milestonelistview/">
-          <MilestoneListView/>
-        </Route>
+        <ProjectStateProvider>
+          <Route path="/projects/:projectSlug">
+            <LoadProjectEffect />
+            <ProjectView />
+          </Route>
+        </ProjectStateProvider>
       </Switch>
     </Router>
   );

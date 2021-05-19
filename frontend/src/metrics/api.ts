@@ -11,13 +11,11 @@ export function getMetrics() {
   const vars = {};
   return doQuery(query, vars).then((response) => {
     return {
-      metrics: flow(
-        always(response.metrics),
-      )(),
+      metrics: flow(always(response.metrics))(),
     };
   });
 }
 
 export function saveMetric(values: any) {
-    console.log("TODO: save", values);
+  console.log('TODO: save', values);
 }

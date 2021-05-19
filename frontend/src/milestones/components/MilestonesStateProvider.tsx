@@ -10,9 +10,7 @@ type PropsT = React.PropsWithChildren<{}>;
 
 // Note: don't observe this with MobX
 export const MilestonesStateProvider: React.FC<PropsT> = (props: PropsT) => {
-  const {
-    milestonesStore,
-  } = useStore();
+  const { milestonesStore } = useStore();
 
   const createState = () => {
     return new MilestonesState({
@@ -41,7 +39,6 @@ export const MilestonesStateProvider: React.FC<PropsT> = (props: PropsT) => {
       milestonesSelection: () => state.milestones.selection,
       milestonesHighlight: () => state.milestones.highlight,
       milestone: () => state.milestones.highlight.item,
-
     };
   };
 

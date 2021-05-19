@@ -1,39 +1,33 @@
 import * as React from 'react';
 import { reaction } from 'mobx';
-import { values } from 'lodash/fp';
 
-import { ProjectsState } from 'src/projects/ProjectsState';
+import { ProjectState } from 'src/projects/ProjectState';
 import { CtrProvider } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
 
 type PropsT = React.PropsWithChildren<{}>;
 
 // Note: don't observe this with MobX
-export const ProjectsStateProvider: React.FC<PropsT> = (props: PropsT) => {
-  const {
-  } = useStore();
+export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
+  const {} = useStore();
 
   const createState = () => {
-    return new ProjectsState({
-    });
+    return new ProjectState({});
   };
 
-  const updateState = (state: ProjectsState) => {
+  const updateState = (state: ProjectState) => {
     reaction(
-      () => ({
-      }),
-      (inputs) => {
-      },
+      () => ({}),
+      (inputs) => {},
       {
         fireImmediately: true,
       }
     );
   };
 
-  const getDefaultProps = (state: ProjectsState) => {
+  const getDefaultProps = (state: ProjectState) => {
     return {
-      projectsState: () => state,
-
+      projectState: () => state,
     };
   };
 
@@ -41,7 +35,7 @@ export const ProjectsStateProvider: React.FC<PropsT> = (props: PropsT) => {
     <CtrProvider
       createCtr={createState}
       updateCtr={updateState}
-      destroyCtr={(state: ProjectsState) => state.destroy()}
+      destroyCtr={(state: ProjectState) => state.destroy()}
       getDefaultProps={getDefaultProps}
     >
       {props.children}

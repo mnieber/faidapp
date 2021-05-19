@@ -3,28 +3,27 @@ import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { ResourceView } from 'src/utils/components';
 import { RST } from 'src/utils/RST';
-import { ProjectPageT } from 'src/projects/types'
+import { ProjectT } from 'src/projects/types';
 
-type PropsT = {
-};
+type PropsT = {};
 
 type DefaultPropsT = {
-  projectPage: ProjectPageT
-  projectPageRS: RST
+  project: ProjectT;
+  projectRS: RST;
 };
 
-export const ProjectPageView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
+export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
   const updatedDiv = (
-    <div className="ProjectPageView flex flex-col w-full">
-      To do: show projectPage with name {props.projectPage.name}
+    <div className="ProjectView flex flex-col w-full">
+      To do: show project with name {props.project.name}
     </div>
   );
 
   return (
     <ResourceView
-      rs={props.projectPageRS}
+      rs={props.projectRS}
       renderUpdated={() => updatedDiv}
       renderErrored={(message) => {
         return <div className="text-white">{message}</div>;

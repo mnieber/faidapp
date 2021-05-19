@@ -1,10 +1,10 @@
-import { action } from "mobx";
+import { action } from 'mobx';
 
-const RESET = "RESET";
-const UPDATING = "UPDATING";
-const ERRORED = "ERRORED";
-const UPDATED = "UPDATED";
-const LOADING = "LOADING";
+const RESET = 'RESET';
+const UPDATING = 'UPDATING';
+const ERRORED = 'ERRORED';
+const UPDATED = 'UPDATED';
+const LOADING = 'LOADING';
 
 export type ResetRST = {
   type: typeof RESET;

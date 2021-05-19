@@ -3,14 +3,15 @@ import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { MilestoneT } from 'src/milestones/types';
 
-import "./MilestoneListViewItem.scss"
+import './MilestoneListViewItem.scss';
 
 export type PropsT = {
   milestone: MilestoneT;
   className?: any;
 };
 
-export const MilestoneListViewItem: React.FC<PropsT> = observer((props: PropsT) => {
+export const MilestoneListViewItem: React.FC<PropsT> = observer(
+  (props: PropsT) => {
   return (
     <div
       className={classnames(
@@ -21,4 +22,5 @@ export const MilestoneListViewItem: React.FC<PropsT> = observer((props: PropsT) 
         {props.milestone.name}
     </div>
   );
-});
+  }
+);
