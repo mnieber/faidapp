@@ -7,7 +7,9 @@ RUN pip install --upgrade pip
 RUN apt-get update && apt-get install -y \
     fish                ` # via :fish` \
     make                ` # via :makefile` \
-    nano
+    nano \
+    postgresql-client   ` # via :dockerfile` \
+    python3-pip         ` # via :dockerfile`
 
 # install dev pip dependencies
 RUN pip install \
