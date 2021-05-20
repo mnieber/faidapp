@@ -3,12 +3,12 @@ import { Effect } from 'src/utils/components';
 import { useStore } from 'src/app/components/useStore';
 
 export const LoadProjectEffect: React.FC = () => {
-  const { projectStore } = useStore();
+  const { api } = useStore();
 
   return (
     <Effect
       f={({ projectSlug }: any) => {
-        projectStore.loadProjectBySlug(projectSlug);
+        api.loadProjectBySlug(projectSlug);
       }}
       getArgs={(params: any) => ({
         projectSlug: params.projectSlug,

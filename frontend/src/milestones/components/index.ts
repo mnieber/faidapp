@@ -1,5 +1,4 @@
-export { MilestonesStateProvider } from './MilestonesStateProvider';
 export { MilestoneListView } from './MilestoneListView';
 export { MilestoneListViewItem } from './MilestoneListViewItem';
-export { LoadMilestonesEffect } from './LoadMilestonesEffect';
+export { MilestonesStateProvider } from './MilestonesStateProvider';
 export { SelectMilestoneEffect } from './SelectMilestoneEffect';

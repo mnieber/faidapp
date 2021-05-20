@@ -17,7 +17,7 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
 
   const updatedDiv = (
     <div className="ProjectView flex flex-col w-full">
-      To do: show project with name {props.project.name}
+      To do: show project with name {props.project?.name}
     </div>
   );
 

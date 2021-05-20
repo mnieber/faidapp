@@ -1,5 +1,5 @@
 import { action, observable, makeObservable } from 'mobx';
-import { RST, resetRS, updateRes } from 'src/utils/RST';
+import { RST, resetRS } from 'src/utils/RST';
 import { forEach } from 'lodash/fp';
 import * as milestonesApi from 'src/milestones/api';
 
@@ -13,22 +13,10 @@ export class MilestonesStore {
     makeObservable(this);
   }
 
-  @action loadMilestones = () => {
-    updateRes(
-      this,
-      'milestoneByIdRS',
-      () => {
-        return milestonesApi.getMilestones();
-      },
-      (response: any) => {
-        this.addMilestones(response.milestones);
-      },
-      (message: any) => {
-        console.log(message);
-        return 'Oops, there was an error getting the milestones data';
-      }
-    );
-  };
+  @action onLoadData(event: any) {
+    if (event.topic === 'LOAD_PROJECT') {
+    }
+  }
 
   @action saveMilestone = (values: any) => {
     milestonesApi.saveMilestone(values);

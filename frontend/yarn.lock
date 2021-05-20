@@ -7698,6 +7698,11 @@ methods@~1.1.2:
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
+micro-signals@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/micro-signals/-/micro-signals-2.4.0.tgz#007af19ea18051e360f9fa17023284779d839593"
+  integrity sha512-OpGuAaqeJQEV4Q45M8K1RWi4/Fs8QRl9xB9Q5MBGcMlXu5rJu4exdZ0dNXrHKDUpXcIvGW/Lndr7qrtlNB5MGg==
+
 microevent.ts@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/microevent.ts/-/microevent.ts-0.1.1.tgz#70b09b83f43df5172d0205a63025bce0f7357fa0"
@@ -8189,6 +8194,11 @@ normalize-url@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha512-U+JJi7duF1o+u2pynbp2zXDW2/PADgC30f0GsHZtRh+HOcXHnw137TrNlyxxRvWW5fjKd3bcLHPxofWuCjaeZg==
+
+normalizr@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-3.6.1.tgz#d367ab840e031ff382141b8d81ce279292ff69fe"
+  integrity sha512-8iEmqXmPtll8PwbEFrbPoDxVw7MKnNvt3PZzR2Xvq9nggEEOgBlNICPXYzyZ4w4AkHUzCU998mdatER3n2VaMA==
 
 npm-run-path@^2.0.0:
   version "2.0.2"
