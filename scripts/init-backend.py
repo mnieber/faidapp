@@ -30,19 +30,7 @@ if Dodo.is_main(__name__, safe=True):
             "psql",
             "-h",
             "postgres",
-            "-U",
-            "postgres",
-            "-c",
-            "CREATE DATABASE app;",
-        ]
-    )
-
-    Dodo.run(
-        [
-            "env",
-            "PGPASSWORD=dev",
-            "psql",
-            "-h",
+            "-d",
             "postgres",
             "-U",
             "postgres",
@@ -57,6 +45,24 @@ if Dodo.is_main(__name__, safe=True):
             "PGPASSWORD=dev",
             "psql",
             "-h",
+            "postgres",
+            "-d",
+            "postgres",
+            "-U",
+            "app",
+            "-c",
+            "CREATE DATABASE app;",
+        ]
+    )
+
+    Dodo.run(
+        [
+            "env",
+            "PGPASSWORD=dev",
+            "psql",
+            "-h",
+            "postgres",
+            "-d",
             "postgres",
             "-U",
             "postgres",
