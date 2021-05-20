@@ -3,6 +3,9 @@ from models.types import ContentModelT
 
 
 class ModelClass(Entity):
+    class Meta:
+        abstract = True
+
     @classmethod
     def content_resource_name(cls):
         raise Exception("Not implemented")

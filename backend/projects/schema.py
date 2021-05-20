@@ -1,8 +1,7 @@
 import graphene
-from django.contrib.contenttypes.models import ContentType
-from django.db.models import Sum
 from graphene_django.types import DjangoObjectType
 
+from milestones.schema import MilestoneType
 from projects import models
 
 

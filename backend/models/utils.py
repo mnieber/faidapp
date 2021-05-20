@@ -3,6 +3,7 @@ from uuid import UUID
 import requests
 from django.conf import settings
 
+from milestones.models import Milestone
 from projects.models import Project
 
 
@@ -14,8 +15,11 @@ def get_model_id_from_content_model(content_model):
 
 
 def get_model_class_from_content_model(content_model):
-    if content_model.model == "project":
+    model_name = getattr(content_model, "model", None)
+    if model_name == "project":
         return Project
+    if model_name == "milestone":
+        return Milestone
     return None
 
 

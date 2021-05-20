@@ -22,6 +22,7 @@ LOCAL_APPS = [
     "users.apps.UsersConfig",
     "models.apps.Models",
     "projects.apps.Projects",
+    "milestones.apps.Milestones",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
