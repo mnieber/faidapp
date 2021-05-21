@@ -1,5 +1,4 @@
 import { setCallbacks } from 'aspiration';
-import { makeObservable } from 'mobx';
 import {
   facet,
   getm,
@@ -75,11 +74,13 @@ export class MilestonesState {
 
   constructor(props: PropsT) {
     registerFacets(this, {});
-    makeObservable(this, {});
 
     registerFacets(this.milestones, { name: 'Milestones' });
     this._setMilestonesCallbacks(props);
     this._applyMilestonesPolicies(props);
     makeCtrObservable(this.milestones);
+
+    // Finally, make this container observable
+    makeCtrObservable(this);
   }
 }

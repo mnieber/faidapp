@@ -3,7 +3,7 @@ import { useDefaultProps, FC } from 'react-default-props-context';
 import { ResourceView } from 'src/utils/components';
 import { RST } from 'src/utils/RST';
 import { ProjectT } from 'src/projects/types';
-import { ProjectBanner } from 'src/projects/components';
+import { ProjectBanner, ProjectDescription } from 'src/projects/components';
 import { MilestoneListView } from 'src/milestones/components';
 
 type PropsT = {};
@@ -20,6 +20,7 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
     <div className="ProjectView flex flex-col w-full">
       <ProjectBanner />
       <MilestoneListView />
+      <ProjectDescription />
     </div>
   );
 

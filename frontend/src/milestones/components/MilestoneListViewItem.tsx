@@ -8,19 +8,21 @@ import './MilestoneListViewItem.scss';
 export type PropsT = {
   milestone: MilestoneT;
   className?: any;
+  onMouseDown: any;
 };
 
 export const MilestoneListViewItem: React.FC<PropsT> = observer(
   (props: PropsT) => {
-  return (
-    <div
-      className={classnames(
-        'MilestoneListViewItem flex flex-row flex-1 mb-2',
-        props.className
-      )}
-    >
+    return (
+      <div
+        className={classnames(
+          'MilestoneListViewItem flex flex-row flex-1 mb-2',
+          props.className
+        )}
+        onMouseDown={props.onMouseDown}
+      >
         {props.milestone.name}
-    </div>
-  );
+      </div>
+    );
   }
 );

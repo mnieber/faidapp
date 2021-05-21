@@ -3,6 +3,8 @@ import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { MilestoneListViewItem } from 'src/milestones/components';
 import { MilestoneT } from 'src/milestones/types';
+import { Selection } from 'skandha-facets/Selection';
+import { Highlight } from 'skandha-facets/Highlight';
 import classnames from 'classnames';
 
 // import './MilestoneListView.scss';
@@ -13,6 +15,8 @@ type PropsT = {
 
 type DefaultPropsT = {
   milestones: MilestoneT[];
+  milestonesSelection: Selection;
+  milestonesHighlight: Highlight;
 };
 
 export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
@@ -20,7 +24,23 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
     const milestoneDivs = flow(
       always(props.milestones),
-      map((x) => <MilestoneListViewItem key={x.id} milestone={x} />)
+      map((milestone) => (
+        <MilestoneListViewItem
+          key={milestone.id}
+          milestone={milestone}
+          className={classnames({
+            'MilestonesListViewItem--highlighted':
+              milestone && props.milestonesHighlight.id === milestone.id,
+          })}
+          onMouseDown={(e: any) => {
+            props.milestonesSelection.selectItem({
+              itemId: milestone.id,
+              isShift: e.shiftKey,
+              isCtrl: e.ctrlKey,
+            });
+          }}
+        />
+      ))
     )();
     const noItems = <h2>There are no milestones</h2>;
     return (

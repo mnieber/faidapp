@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from 'src/app/components';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
 import { logJS } from 'src/utils/logging';
+import { setOptions } from 'skandha';
+
+import 'antd/dist/antd.css';
+import 'slick-carousel/slick/slick.css';
 
 // @ts-ignore
 window.logJS = logJS;
+
+setOptions({ logging: true });
 
 ReactDOM.render(
   <React.StrictMode>
