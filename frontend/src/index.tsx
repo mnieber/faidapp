@@ -4,6 +4,10 @@ import './index.css';
 import { App } from 'src/app/components';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.css';
+import { logJS } from 'src/utils/logging';
+
+// @ts-ignore
+window.logJS = logJS;
 
 ReactDOM.render(
   <React.StrictMode>

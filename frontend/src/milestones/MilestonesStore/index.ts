@@ -1,7 +1,8 @@
 import { action, observable, makeObservable } from 'mobx';
-import { RST, resetRS } from 'src/utils/RST';
+import { isUpdatedRS, resetRS, RST } from 'src/utils/RST';
 import { forEach } from 'lodash/fp';
 import * as milestonesApi from 'src/milestones/api';
+import { values } from 'lodash/fp';
 
 import { MilestoneT, MilestoneByIdT } from 'src/milestones/types';
 
@@ -15,6 +16,10 @@ export class MilestonesStore {
 
   @action onLoadData(event: any) {
     if (event.topic === 'LOAD_PROJECT') {
+      const milestones: MilestoneT[] = isUpdatedRS(event.payload.rs)
+        ? values(event.payload.milestones)
+        : [];
+      this.addMilestones(milestones);
     }
   }
 

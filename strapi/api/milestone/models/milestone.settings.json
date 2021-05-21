@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "milestones",
   "info": {
-    "name": "Milestone"
+    "name": "Milestone",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -21,7 +22,10 @@
     },
     "description": {
       "type": "dynamiczone",
-      "components": []
+      "components": [
+        "presentation.text-with-slot",
+        "presentation.text"
+      ]
     },
     "project": {
       "model": "project"

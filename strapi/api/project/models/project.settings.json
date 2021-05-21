@@ -19,7 +19,8 @@
     "description": {
       "type": "dynamiczone",
       "components": [
-        "presentation.text-with-slot"
+        "presentation.text-with-slot",
+        "presentation.text"
       ]
     },
     "organization": {

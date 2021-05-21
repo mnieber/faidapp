@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { createBrowserHistory } from 'history';
 import { ProjectView, LoadProjectEffect } from 'src/projects/components';
 import { ProjectStateProvider } from 'src/projects/components';
+import { MilestonesStateProvider } from 'src/milestones/components';
 
 type PropsT = {};
 
@@ -14,10 +15,12 @@ export const UrlRouter: React.FC<PropsT> = observer((props: PropsT) => {
     <Router history={history}>
       <Switch>
         <ProjectStateProvider>
-          <Route path="/projects/:projectSlug">
-            <LoadProjectEffect />
-            <ProjectView />
-          </Route>
+          <MilestonesStateProvider>
+            <Route path="/projects/:projectSlug">
+              <LoadProjectEffect />
+              <ProjectView />
+            </Route>
+          </MilestonesStateProvider>
         </ProjectStateProvider>
       </Switch>
     </Router>

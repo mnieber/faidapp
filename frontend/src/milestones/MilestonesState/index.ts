@@ -23,8 +23,6 @@ import { Highlight, HighlightCbs } from 'skandha-facets/Highlight';
 import { MilestonesStore } from 'src/milestones/MilestonesStore';
 import { Inputs } from 'src/milestones/MilestonesState/facets/Inputs';
 import { Outputs } from 'src/milestones/MilestonesState/facets/Outputs';
-import * as Policies from './policies';
-import * as Handlers from './handlers';
 
 type PropsT = {
   milestonesStore: MilestonesStore;
@@ -77,7 +75,7 @@ export class MilestonesState {
 
   constructor(props: PropsT) {
     registerFacets(this, {});
-    makeObservable(this);
+    makeObservable(this, {});
 
     registerFacets(this.milestones, { name: 'Milestones' });
     this._setMilestonesCallbacks(props);

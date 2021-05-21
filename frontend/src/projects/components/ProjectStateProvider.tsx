@@ -6,7 +6,6 @@ import { useStore } from 'src/app/components';
 
 type PropsT = React.PropsWithChildren<{}>;
 
-// Note: don't observe this with MobX
 export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
   const { projectStore } = useStore();
 

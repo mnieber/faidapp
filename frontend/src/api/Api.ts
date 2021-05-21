@@ -2,7 +2,9 @@ import { normalize, schema } from 'normalizr';
 import { doQuery } from 'src/utils/graphqlClient';
 import { ApiBase } from 'src/api/ApiBase';
 
-const project = new schema.Entity('projects');
+const milestone = new schema.Entity('milestones');
+const milestoneList = new schema.Array(milestone);
+const project = new schema.Entity('projects', { milestones: milestoneList });
 
 export class Api extends ApiBase {
   loadProjectBySlug(slug: string) {
@@ -16,6 +18,12 @@ export class Api extends ApiBase {
       ) {
         id
         name
+        content
+        milestones {
+          id
+          name
+          content
+        }
       }
     }`;
 
@@ -27,6 +35,9 @@ export class Api extends ApiBase {
         const normalized_data = normalize(response.project, project);
         this._dispatchPayload(topic, normalized_data.entities);
       })
-      .catch((error) => this._dispatchError(topic, error));
+      .catch((error) => {
+        const msg = error.response.errors[0].message;
+        this._dispatchError(topic, msg);
+      });
   }
 }

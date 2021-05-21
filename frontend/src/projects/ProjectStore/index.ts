@@ -14,7 +14,7 @@ export class ProjectStore {
   @action onLoadData(event: any) {
     if (event.topic === 'LOAD_PROJECT') {
       this.projectRS = event.payload.rs;
-      this.project = isUpdatedRS(this.projectRS)
+      this.project = isUpdatedRS(event.payload.rs)
         ? values(event.payload.projects)[0]
         : undefined;
     }
