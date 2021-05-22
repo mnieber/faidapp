@@ -1,4 +1,4 @@
-import { always, flow, map } from 'lodash/fp';
+import { always, concat, flow, map } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { MilestoneListViewItem } from 'src/milestones/components';
@@ -10,6 +10,7 @@ import classnames from 'classnames';
 // import './MilestoneListView.scss';
 
 type PropsT = {
+  prefixDivs?: any[];
   className?: any;
 };
 
@@ -40,7 +41,8 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
             });
           }}
         />
-      ))
+      )),
+      concat(props.prefixDivs ?? [])
     )();
     const noItems = <h2>There are no milestones</h2>;
     return (

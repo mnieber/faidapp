@@ -40,11 +40,11 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
     useSyncCarouselHeader(slider, idx);
 
     const descriptions = concat([undefined], props.milestones).map(
-      (milestone) => {
+      (milestone, idx) => {
         if (milestone === undefined) {
-          return <Content content={props.project.content} />;
+          return <Content key={idx} content={props.project.content} />;
         }
-        return <Content content={milestone.content} />;
+        return <Content key={idx} content={milestone.content} />;
       }
     );
     // TODO: Implement ProjectDescription
