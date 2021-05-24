@@ -1,13 +1,13 @@
+import './index.css';
+import 'antd/dist/antd.css';
+import 'slick-carousel/slick/slick.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { App } from 'src/app/components';
 import reportWebVitals from './reportWebVitals';
 import { logJS } from 'src/utils/logging';
 import { setOptions } from 'skandha';
-
-import 'antd/dist/antd.css';
-import 'slick-carousel/slick/slick.css';
 
 // @ts-ignore
 window.logJS = logJS;

@@ -7,14 +7,18 @@ import { ProjectT } from 'src/projects/types';
 import { ProjectBanner, ProjectDescription } from 'src/projects/components';
 import { MilestoneListView } from 'src/milestones/components';
 import { Selection } from 'skandha-facets/Selection';
+import { Highlight } from 'skandha-facets/Highlight';
 import classnames from 'classnames';
 import { HomeOutlined } from '@ant-design/icons';
+
+import './ProjectView.scss';
 
 type PropsT = {};
 
 type DefaultPropsT = {
   project: ProjectT;
   milestonesSelection: Selection;
+  milestonesHighlight: Highlight;
   projectRS: RST;
 };
 
@@ -24,7 +28,10 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const projectAsMilestone = (
     <div
       key="projectAsMilestone"
-      className={classnames('MilestoneListViewItem flex flex-row mb-2')}
+      className={classnames('MilestoneListViewItem flex flex-row', {
+        'MilestonesListViewItem--highlighted':
+          props.milestonesHighlight.item === undefined,
+      })}
       onMouseDown={action(() => {
         props.milestonesSelection.selectItem({ itemId: undefined });
       })}
@@ -35,9 +42,14 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
 
   const updatedDiv = (
     <div className="ProjectView flex flex-col w-full">
-      <ProjectBanner className="mb-2" />
-      <MilestoneListView prefixDivs={[projectAsMilestone]} />
-      <ProjectDescription />
+      <ProjectBanner className="mb-4" />
+      <div className="ProjectView__body">
+        <MilestoneListView
+          prefixDivs={[projectAsMilestone]}
+          className="justify-center"
+        />
+        <ProjectDescription />
+      </div>
     </div>
   );
 

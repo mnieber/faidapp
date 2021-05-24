@@ -24,7 +24,7 @@ export const MilestoneListViewItem: React.FC<PropsT> = observer(
     return (
       <div
         className={classnames(
-          'MilestoneListViewItem flex flex-row mb-2',
+          'MilestoneListViewItem flex flex-row',
           props.className
         )}
         onMouseDown={props.onMouseDown}

@@ -3,5 +3,10 @@
 }
 
 .TextWithSlot__Slot {
-  @apply float-left mr-4 mb-2;
+  @apply float-left clear-left mr-4 mb-2;
+}
+
+.TextWithSlot__Spacer {
+  @apply float-left clear-left;
+  width: 0px;
 }

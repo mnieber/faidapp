@@ -1,9 +1,9 @@
 .MilestoneListViewItem {
-  width: 64px;
+  @apply mx-4 pb-1;
 }
 
 .MilestonesListViewItem--highlighted {
-  @apply bg-yellow-400;
+  @apply border-4 border-t-0 border-l-0 border-r-0 border-yellow-400 border-solid;
 }
 
 .MilestonesListViewItem__Icon {
