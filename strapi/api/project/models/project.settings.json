@@ -35,6 +35,21 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "imageProps": {
+      "type": "string"
     }
   }
 }

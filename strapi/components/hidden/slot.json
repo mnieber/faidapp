@@ -18,6 +18,21 @@
     },
     "project": {
       "model": "project"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "props": {
+      "type": "string"
     }
   }
 }

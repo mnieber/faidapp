@@ -8,6 +8,12 @@ from projects import models
 class ProjectType(DjangoObjectType):
     class Meta:
         model = models.Project
+        exclude = ("content",)
+
+    content = graphene.String()
+
+    def resolve_content(self, info, **kwargs):
+        return self.content
 
 
 class Query(object):
