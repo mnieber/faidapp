@@ -46,7 +46,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
         rs={props.metricsRS}
         renderUpdated={() => updatedDiv}
         renderErrored={(message) => {
-          return <div className="text-white">{message}</div>;
+          return <div className="">{message}</div>;
         }}
       />
     );

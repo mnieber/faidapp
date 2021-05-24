@@ -8,6 +8,7 @@ import { ProjectBanner, ProjectDescription } from 'src/projects/components';
 import { MilestoneListView } from 'src/milestones/components';
 import { Selection } from 'skandha-facets/Selection';
 import classnames from 'classnames';
+import { HomeOutlined } from '@ant-design/icons';
 
 type PropsT = {};
 
@@ -23,18 +24,18 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const projectAsMilestone = (
     <div
       key="projectAsMilestone"
-      className={classnames('MilestoneListViewItem flex flex-row flex-1 mb-2')}
+      className={classnames('MilestoneListViewItem flex flex-row mb-2')}
       onMouseDown={action(() => {
         props.milestonesSelection.selectItem({ itemId: undefined });
       })}
     >
-      {props.project?.name ?? ''}
+      <HomeOutlined className="MilestonesListViewItem__Icon" />
     </div>
   );
 
   const updatedDiv = (
     <div className="ProjectView flex flex-col w-full">
-      <ProjectBanner />
+      <ProjectBanner className="mb-2" />
       <MilestoneListView prefixDivs={[projectAsMilestone]} />
       <ProjectDescription />
     </div>
@@ -45,7 +46,7 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
       rs={props.projectRS}
       renderUpdated={() => updatedDiv}
       renderErrored={(message) => {
-        return <div className="text-white">{message}</div>;
+        return <div className="">{message}</div>;
       }}
     />
   );

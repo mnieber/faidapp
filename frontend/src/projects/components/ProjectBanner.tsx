@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import classnames from 'classnames';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { ProjectT } from 'src/projects/types';
+import yaml from 'js-yaml';
 
 import './ProjectBanner.scss';
 
@@ -16,6 +17,9 @@ type DefaultPropsT = {
 export const ProjectBanner: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
+    const imageProps: any = yaml.load(props.project.imageProps ?? '{}');
+    const posX = imageProps.posX ?? 0;
+    const posY = imageProps.posY ?? 0;
 
     const div = (
       <div
@@ -23,8 +27,13 @@ export const ProjectBanner: FC<PropsT, DefaultPropsT> = observer(
           'ProjectBanner flex flex-col w-full',
           props.className
         )}
+        style={{
+          backgroundImage: `url(http://localhost:1337/uploads/small_${props.project.imageHash})`,
+          backgroundSize: 'cover',
+          backgroundPosition: `${posX} ${posY}`,
+        }}
       >
-        {props.project.name}
+        <div className="ProjectBanner__title">{props.project.name}</div>
       </div>
     );
 

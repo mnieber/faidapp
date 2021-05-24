@@ -18,11 +18,14 @@ export class Api extends ApiBase {
       ) {
         id
         name
+        imageHash
+        imageProps
         content
         milestones {
           id
           name
           content
+          isCompleted
         }
       }
     }`;

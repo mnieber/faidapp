@@ -41,10 +41,12 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
 
     const descriptions = concat([undefined], props.milestones).map(
       (milestone, idx) => {
-        if (milestone === undefined) {
-          return <Content key={idx} content={props.project.content} />;
-        }
-        return <Content key={idx} content={milestone.content} />;
+        (window as any).logJS('idx', idx);
+        const rawContent =
+          milestone === undefined ? props.project.content : milestone.content;
+
+        const content = JSON.parse(rawContent);
+        return <Content key={idx} content={content.description} />;
       }
     );
     // TODO: Implement ProjectDescription

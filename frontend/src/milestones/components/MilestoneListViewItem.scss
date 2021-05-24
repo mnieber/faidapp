@@ -1,6 +1,11 @@
 .MilestoneListViewItem {
+  width: 64px;
 }
 
 .MilestonesListViewItem--highlighted {
   @apply bg-yellow-400;
+}
+
+.MilestonesListViewItem__Icon {
+  @apply align-text-top;
 }

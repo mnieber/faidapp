@@ -1,4 +1,4 @@
-import { always, concat, flow, map } from 'lodash/fp';
+import { always, concat, flow, map, sortBy } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { MilestoneListViewItem } from 'src/milestones/components';
@@ -25,6 +25,7 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
     const milestoneDivs = flow(
       always(props.milestones),
+      sortBy((x: MilestoneT) => !x.isCompleted),
       map((milestone) => (
         <MilestoneListViewItem
           key={milestone.id}

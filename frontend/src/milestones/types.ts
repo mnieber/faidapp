@@ -1,6 +1,7 @@
 export type MilestoneT = {
   id: string;
   name: string;
+  isCompleted: boolean;
   content: any;
 };
 
