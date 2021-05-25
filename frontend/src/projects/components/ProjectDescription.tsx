@@ -8,10 +8,11 @@ import { MilestoneT } from 'src/milestones/types';
 import { Content } from 'src/content/components';
 import { Selection } from 'skandha-facets/Selection';
 import { Highlight } from 'skandha-facets/Highlight';
-import 'slick-carousel/slick/slick.css';
 
 import Slider from 'react-slick';
 import { useSyncCarouselHeader } from 'src/utils/useSyncCarouselHeader';
+
+import './ProjectDescription.scss';
 
 type PropsT = {
   className?: any;
@@ -26,6 +27,7 @@ type DefaultPropsT = {
 
 export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
+    const [showExpanded, setShowExpanded] = React.useState(false);
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
     const slider = React.useRef(null);
 
@@ -38,6 +40,10 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
         : 0;
 
     useSyncCarouselHeader(slider, idx);
+
+    const onScroll: React.UIEventHandler<HTMLDivElement> = () => {
+      setShowExpanded(true);
+    };
 
     const descriptions = concat([undefined], props.milestones).map(
       (milestone, idx) => {
@@ -54,12 +60,15 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
       <div
         className={classnames(
           'ProjectDescription flex flex-col w-full',
+          { 'ProjectDescription--expanded': showExpanded },
           props.className
         )}
+        onScroll={onScroll}
       >
         <Slider
           arrows={false}
           dots={false}
+          fade={true}
           infinite={false}
           speed={500}
           draggable={false}

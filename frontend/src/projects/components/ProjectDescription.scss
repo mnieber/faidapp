@@ -1,2 +1,10 @@
 .ProjectDescription {
+  overflow-y: auto;
+  max-height: 250px;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.ProjectDescription--expanded {
+  max-height: 400px;
+  transition: max-height 1s ease-in-out;
 }

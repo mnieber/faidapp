@@ -3,15 +3,10 @@ import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { MilestoneT } from 'src/milestones/types';
 import { CheckCircleOutlined } from '@ant-design/icons';
-import { Icon } from '@ant-design/compatible';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 import './MilestoneListViewItem.scss';
-
-const CircleSvg = () => (
-  <svg width="30" height="30" viewBox="0 0 30 30">
-    <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z" />
-  </svg>
-);
 
 export type PropsT = {
   milestone: MilestoneT;
@@ -32,9 +27,9 @@ export const MilestoneListViewItem: React.FC<PropsT> = observer(
         {props.milestone.isCompleted ? (
           <CheckCircleOutlined className="MilestonesListViewItem__Icon text-2xl" />
         ) : (
-          <Icon
-            component={CircleSvg}
-            className="MilestonesListViewItem__Icon text-3xl"
+          <FontAwesomeIcon
+            className="MilestonesListViewItem__Icon text-2xl"
+            icon={faCircle}
           />
         )}
       </div>
