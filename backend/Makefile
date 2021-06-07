@@ -16,3 +16,6 @@ show-urls:
 
 shell:
 	python manage.py shell_plus
+
+pytype:
+	watchmedo shell-command --command="flock -n test.lock pytype -d import-error" --patterns="*.py" --recursive .
