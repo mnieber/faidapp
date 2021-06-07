@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { cleanUpCtr } from 'skandha';
-
-import { CtrProvider } from 'react-default-props-context';
+import { cleanUpCtr, CtrProvider } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
 
 type PropsT = React.PropsWithChildren<{}>;

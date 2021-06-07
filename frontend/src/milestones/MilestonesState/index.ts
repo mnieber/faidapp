@@ -2,12 +2,12 @@ import { setCallbacks } from 'aspiration';
 import {
   facet,
   getm,
-  cleanUpCtr,
   mapDataToFacet,
   installPolicies,
   registerFacets,
   ClassMemberT as CMT,
 } from 'skandha';
+import { cleanUpCtr } from 'react-default-props-context';
 import { makeCtrObservable } from 'skandha-mobx';
 import { getIds } from 'src/utils/ids';
 import * as Facets from 'skandha-facets';
