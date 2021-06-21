@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { action } from 'mobx';
 import { useDefaultProps, FC } from 'react-default-props-context';
-import { ResourceView } from 'src/utils/components';
 import { RST } from 'src/utils/RST';
 import { ProjectT } from 'src/projects/types';
 import { ProjectBanner, ProjectDescription } from 'src/projects/components';
@@ -11,7 +10,7 @@ import { Highlight } from 'skandha-facets/Highlight';
 import classnames from 'classnames';
 import { HomeOutlined } from '@ant-design/icons';
 import { resourceUrls } from 'src/projects/ProjectStore';
-import { rsStore } from 'src/api/ResourceStatesStore';
+import { getResourceView } from 'src/utils/components/getResourceView';
 
 import './ProjectView.scss';
 
@@ -26,6 +25,9 @@ type DefaultPropsT = {
 
 export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
+
+  const resourceView = getResourceView({ resourceUrl: resourceUrls.project });
+  if (resourceView) return resourceView;
 
   const projectAsMilestone = (
     <div
@@ -42,7 +44,7 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
     </div>
   );
 
-  const updatedDiv = (
+  return (
     <div className="ProjectView flex flex-col w-full">
       <ProjectBanner className="mb-4" />
       <div className="ProjectView__body">
@@ -53,15 +55,5 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
         <ProjectDescription />
       </div>
     </div>
-  );
-
-  return (
-    <ResourceView
-      rs={rsStore.getState(resourceUrls.project)}
-      renderUpdated={() => updatedDiv}
-      renderErrored={(message) => {
-        return <div className="">{message}</div>;
-      }}
-    />
   );
 });

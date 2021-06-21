@@ -1,13 +1,11 @@
 import { always, flow, map } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
-import { ResourceView } from 'src/utils/components';
 import { MetricListViewItem } from 'src/metrics/components';
-import { RST } from 'src/utils/RST';
 import { MetricT } from 'src/metrics/types';
 import classnames from 'classnames';
 import { resourceUrls } from 'src/metrics/MetricsStore';
-import { rsStore } from 'src/api/ResourceStatesStore';
+import { getResourceView } from 'src/utils/components/getResourceView';
 
 import './MetricListView.scss';
 
@@ -23,6 +21,11 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
+    const resourceView = getResourceView({
+      resourceUrl: resourceUrls.metricById,
+    });
+    if (resourceView) return resourceView;
+
     const metricDivs = flow(
       always(props.metrics),
       map((x: MetricT) => <MetricListViewItem key={x.id} metric={x} />)
@@ -30,7 +33,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
 
     const noItems = <h2>There are no metrics</h2>;
 
-    const updatedDiv = (
+    return (
       <div
         className={classnames(
           'MetricListView flex flex-col w-full',
@@ -40,16 +43,6 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
         {metricDivs.length && metricDivs}
         {!metricDivs.length && noItems}
       </div>
-    );
-
-    return (
-      <ResourceView
-        rs={rsStore.getState(resourceUrls.metricById)}
-        renderUpdated={() => updatedDiv}
-        renderErrored={(message) => {
-          return <div className="">{message}</div>;
-        }}
-      />
     );
   }
 );
