@@ -5,11 +5,11 @@ import useDeepCompareEffect from 'use-deep-compare-effect';
 import { merge } from 'lodash/fp';
 
 import { useSearchParams } from 'src/utils/useSearchParams';
-import { GenericObjectT } from 'src/utils/types';
+import { ObjT } from 'src/utils/types';
 
 interface IProps<ArgsT> {
   f: (args: ArgsT) => void | (() => void);
-  getArgs: (args: GenericObjectT) => ArgsT;
+  getArgs: (args: ObjT) => ArgsT;
 }
 
 export const Effect: <ArgsT>(props: IProps<ArgsT>) => React.ReactElement =

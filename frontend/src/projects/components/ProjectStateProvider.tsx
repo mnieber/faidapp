@@ -16,7 +16,6 @@ export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
   const getDefaultProps = (state: any) => {
     return {
       project: () => projectStore.project,
-      projectRS: () => projectStore.projectRS,
     };
   };
 

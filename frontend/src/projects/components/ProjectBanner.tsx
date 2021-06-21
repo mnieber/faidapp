@@ -11,12 +11,16 @@ type PropsT = {
 };
 
 type DefaultPropsT = {
-  project: ProjectT;
+  project?: ProjectT;
 };
 
 export const ProjectBanner: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
+    if (!props.project) {
+      return <div />;
+    }
+
     const imageProps: any = yaml.load(props.project.imageProps ?? '{}');
     const posX = imageProps.posX ?? 0;
     const posY = imageProps.posY ?? 0;

@@ -1,22 +1,26 @@
 import { action, observable, makeObservable } from 'mobx';
 import { ProjectT } from 'src/projects/types';
-import { isUpdatedRS, resetRS, RST } from 'src/utils/RST';
 import { values } from 'lodash/fp';
+import { rsStore } from 'src/api/ResourceStatesStore';
+import { isUpdatedRS, RST } from 'src/utils/RST';
+
+export const resourceUrls = {
+  project: `ProjectStore/project`,
+};
 
 export class ProjectStore {
   @observable project?: ProjectT;
-  @observable projectRS: RST = resetRS();
 
   constructor() {
     makeObservable(this);
   }
 
-  @action onLoadData(event: any) {
-    if (event.topic === 'LOAD_PROJECT') {
-      this.projectRS = event.payload.rs;
-      this.project = isUpdatedRS(event.payload.rs)
-        ? values(event.payload.projects)[0]
-        : undefined;
+  @action onLoadData(event: any, state: RST, queryName: string) {
+    if (queryName === 'loadProjectBySlug') {
+      if (isUpdatedRS(state)) {
+        this.project = values(event.payload.projects)[0];
+      }
+      rsStore.registerState(state, [resourceUrls.project]);
     }
   }
 }

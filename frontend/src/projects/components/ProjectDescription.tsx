@@ -19,7 +19,7 @@ type PropsT = {
 };
 
 type DefaultPropsT = {
-  project: ProjectT;
+  project?: ProjectT;
   milestones: MilestoneT[];
   milestonesSelection: Selection;
   milestonesHighlight: Highlight;
@@ -30,6 +30,11 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
     const [showExpanded, setShowExpanded] = React.useState(false);
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
     const slider = React.useRef(null);
+    const project = props.project;
+
+    if (!project) {
+      return <div />;
+    }
 
     const idx =
       props.milestonesSelection.selectableIds && props.milestonesHighlight.id
@@ -49,7 +54,7 @@ export const ProjectDescription: FC<PropsT, DefaultPropsT> = observer(
       (milestone, idx) => {
         (window as any).logJS('idx', idx);
         const rawContent =
-          milestone === undefined ? props.project.content : milestone.content;
+          milestone === undefined ? project.content : milestone.content;
 
         const content = JSON.parse(rawContent);
         return <Content key={idx} content={content.description} />;

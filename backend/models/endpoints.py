@@ -12,6 +12,7 @@ from models.utils import (
 )
 
 
+# Note that we expect content fields from strapi to use camelCase
 class WebhookEndpoint(View):
     def post(self, request):
         raw_body = get_post_data(request)

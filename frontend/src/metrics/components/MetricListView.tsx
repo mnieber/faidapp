@@ -6,6 +6,8 @@ import { MetricListViewItem } from 'src/metrics/components';
 import { RST } from 'src/utils/RST';
 import { MetricT } from 'src/metrics/types';
 import classnames from 'classnames';
+import { resourceUrls } from 'src/metrics/MetricsStore';
+import { rsStore } from 'src/api/ResourceStatesStore';
 
 import './MetricListView.scss';
 
@@ -15,7 +17,6 @@ type PropsT = {
 
 type DefaultPropsT = {
   metrics: MetricT[];
-  metricsRS: RST;
 };
 
 export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
@@ -24,7 +25,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
 
     const metricDivs = flow(
       always(props.metrics),
-      map((x) => <MetricListViewItem key={x.id} metric={x} />)
+      map((x: MetricT) => <MetricListViewItem key={x.id} metric={x} />)
     )();
 
     const noItems = <h2>There are no metrics</h2>;
@@ -43,7 +44,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
 
     return (
       <ResourceView
-        rs={props.metricsRS}
+        rs={rsStore.getState(resourceUrls.metricById)}
         renderUpdated={() => updatedDiv}
         renderErrored={(message) => {
           return <div className="">{message}</div>;

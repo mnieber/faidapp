@@ -10,6 +10,8 @@ import { Selection } from 'skandha-facets/Selection';
 import { Highlight } from 'skandha-facets/Highlight';
 import classnames from 'classnames';
 import { HomeOutlined } from '@ant-design/icons';
+import { resourceUrls } from 'src/projects/ProjectStore';
+import { rsStore } from 'src/api/ResourceStatesStore';
 
 import './ProjectView.scss';
 
@@ -55,7 +57,7 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
 
   return (
     <ResourceView
-      rs={props.projectRS}
+      rs={rsStore.getState(resourceUrls.project)}
       renderUpdated={() => updatedDiv}
       renderErrored={(message) => {
         return <div className="">{message}</div>;
