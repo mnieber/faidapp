@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { action } from 'mobx';
 import { useDefaultProps, FC } from 'react-default-props-context';
-import { RST } from 'src/utils/RST';
 import { ProjectT } from 'src/projects/types';
 import { ProjectBanner, ProjectDescription } from 'src/projects/components';
 import { MilestoneListView } from 'src/milestones/components';
@@ -9,7 +8,6 @@ import { Selection } from 'skandha-facets/Selection';
 import { Highlight } from 'skandha-facets/Highlight';
 import classnames from 'classnames';
 import { HomeOutlined } from '@ant-design/icons';
-import { resourceUrls } from 'src/projects/ProjectStore';
 import { getResourceView } from 'src/utils/components/getResourceView';
 
 import './ProjectView.scss';
@@ -18,15 +16,15 @@ type PropsT = {};
 
 type DefaultPropsT = {
   project: ProjectT;
+  projectResUrl: string;
   milestonesSelection: Selection;
   milestonesHighlight: Highlight;
-  projectRS: RST;
 };
 
 export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
-  const resourceView = getResourceView({ resourceUrl: resourceUrls.project });
+  const resourceView = getResourceView({ resourceUrl: props.projectResUrl });
   if (resourceView) return resourceView;
 
   const projectAsMilestone = (
