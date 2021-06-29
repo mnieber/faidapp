@@ -1,11 +1,14 @@
-import * as React from 'react';
 import { reaction } from 'mobx';
-import { useDefaultProps, FC } from 'react-default-props-context';
 import { observer } from 'mobx-react-lite';
-
-import { MilestonesState } from 'src/milestones/MilestonesState';
-import { CtrProvider } from 'react-default-props-context';
+import * as React from 'react';
+import {
+  addCleanUpFunctionToCtr,
+  CtrProvider,
+  FC,
+  useDefaultProps,
+} from 'react-default-props-context';
 import { useStore } from 'src/app/components';
+import { MilestonesState } from 'src/milestones/MilestonesState';
 import { ProjectT } from 'src/projects/types';
 import { lookUp } from 'src/utils/ids';
 
@@ -27,7 +30,7 @@ export const MilestonesStateProvider: FC<PropsT, DefaultPropsT> = observer(
     };
 
     const updateState = (state: MilestonesState) => {
-      reaction(
+      const cleanUpFunction = reaction(
         () => {
           return {
             milestones: lookUp(
@@ -43,6 +46,7 @@ export const MilestonesStateProvider: FC<PropsT, DefaultPropsT> = observer(
           fireImmediately: true,
         }
       );
+      addCleanUpFunctionToCtr(state, cleanUpFunction);
     };
 
     const getDefaultProps = (state: MilestonesState) => {

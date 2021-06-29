@@ -1,4 +1,4 @@
 export { App } from './App';
-export { UrlRouter } from './UrlRouter';
 export { StoreProvider } from './StoreProvider';
+export { UrlRouter } from './UrlRouter';
 export { useStore } from './useStore';

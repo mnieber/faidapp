@@ -1,4 +1,4 @@
-export { Content } from './Content'
-export { Text } from './Text'
-export { Image } from './Image'
-export { TextWithSlot } from './TextWithSlot'
+export { Content } from './Content';
+export { Image } from './Image';
+export { Text } from './Text';
+export { TextWithSlot } from './TextWithSlot';

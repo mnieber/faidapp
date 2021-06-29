@@ -1,6 +1,6 @@
-import React from 'react';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { MilestoneT } from 'src/milestones/types';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

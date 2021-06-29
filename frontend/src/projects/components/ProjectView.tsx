@@ -1,15 +1,14 @@
-import { observer } from 'mobx-react-lite';
-import { action } from 'mobx';
-import { useDefaultProps, FC } from 'react-default-props-context';
-import { ProjectT } from 'src/projects/types';
-import { ProjectBanner, ProjectDescription } from 'src/projects/components';
-import { MilestoneListView } from 'src/milestones/components';
-import { Selection } from 'skandha-facets/Selection';
-import { Highlight } from 'skandha-facets/Highlight';
-import classnames from 'classnames';
 import { HomeOutlined } from '@ant-design/icons';
+import classnames from 'classnames';
+import { action } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import { FC, useDefaultProps } from 'react-default-props-context';
+import { Highlight } from 'skandha-facets/Highlight';
+import { Selection } from 'skandha-facets/Selection';
+import { MilestoneListView } from 'src/milestones/components';
+import { ProjectBanner, ProjectDescription } from 'src/projects/components';
+import { ProjectT } from 'src/projects/types';
 import { getResourceView } from 'src/utils/components/getResourceView';
-
 import './ProjectView.scss';
 
 type PropsT = {};
@@ -24,7 +23,7 @@ type DefaultPropsT = {
 export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
-  const resourceView = getResourceView({ resourceUrl: props.projectResUrl });
+  const resourceView = getResourceView({ resUrl: props.projectResUrl });
   if (resourceView) return resourceView;
 
   const projectAsMilestone = (

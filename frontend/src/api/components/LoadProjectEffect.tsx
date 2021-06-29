@@ -1,6 +1,6 @@
 import React from 'react';
-import { Effect } from 'src/utils/components';
 import { useStore } from 'src/app/components/useStore';
+import { Effect } from 'src/utils/components';
 
 export const LoadProjectEffect: React.FC = () => {
   const { api } = useStore();

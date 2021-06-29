@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { always, concat, flow, map, sortBy } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
@@ -5,9 +6,8 @@ import { MilestoneListViewItem } from 'src/milestones/components';
 import { MilestoneT } from 'src/milestones/types';
 import { Selection } from 'skandha-facets/Selection';
 import { Highlight } from 'skandha-facets/Highlight';
-import classnames from 'classnames';
 
-// import './MilestoneListView.scss';
+import './MilestoneListView.scss';
 
 type PropsT = {
   prefixDivs?: any[];

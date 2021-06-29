@@ -1,10 +1,8 @@
-import { action, observable, makeObservable } from 'mobx';
+import { forEach, values } from 'lodash/fp';
+import { action, makeObservable, observable } from 'mobx';
+import { rsMap } from 'src/api/ResourceStateMap';
+import { MilestoneByIdT, MilestoneT } from 'src/milestones/types';
 import { isUpdatedRS, RST } from 'src/utils/RST';
-import { forEach } from 'lodash/fp';
-import { values } from 'lodash/fp';
-
-import { MilestoneT, MilestoneByIdT } from 'src/milestones/types';
-import { rsStore } from 'src/api/ResourceStatesStore';
 
 export const resourceUrls = {
   milestoneById: `MilestonesStore/milestoneById`,
@@ -17,13 +15,13 @@ export class MilestonesStore {
     makeObservable(this);
   }
 
-  @action onLoadData(event: any, state: RST, queryName: string) {
+  @action onLoadData(event: any, rs: RST, queryName: string) {
     if (queryName === 'loadProjectBySlug') {
-      if (isUpdatedRS(state)) {
+      if (isUpdatedRS(rs)) {
         const milestones: MilestoneT[] = values(event.payload.milestones);
         this.addMilestones(milestones);
-        rsStore.registerState(
-          state,
+        rsMap.registerRS(
+          rs,
           milestones.map((x) => `${resourceUrls.milestoneById}/${x.id}`)
         );
       }

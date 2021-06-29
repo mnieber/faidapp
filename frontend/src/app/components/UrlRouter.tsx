@@ -1,10 +1,10 @@
-import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { createBrowserHistory } from 'history';
-import { ProjectView, LoadProjectEffect } from 'src/projects/components';
-import { ProjectStateProvider } from 'src/projects/components';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { Route, Router, Switch } from 'react-router-dom';
+import { LoadProjectEffect } from 'src/api/components';
 import { MilestonesStateProvider } from 'src/milestones/components';
+import { ProjectStateProvider, ProjectView } from 'src/projects/components';
 
 type PropsT = {};
 

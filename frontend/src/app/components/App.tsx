@@ -1,7 +1,6 @@
 import React from 'react';
-
-import './App.scss';
 import { UrlRouter } from 'src/app/components/UrlRouter';
+import './App.scss';
 
 export function App() {
   return (

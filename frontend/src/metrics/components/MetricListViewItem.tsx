@@ -1,8 +1,7 @@
-import React from 'react';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
+import React from 'react';
 import { MetricT } from 'src/metrics/types';
-
 import './MetricListViewItem.scss';
 
 export type PropsT = {

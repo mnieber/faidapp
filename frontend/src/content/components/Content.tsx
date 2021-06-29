@@ -1,5 +1,5 @@
-import { observer } from 'mobx-react-lite';
 import classnames from 'classnames';
+import { observer } from 'mobx-react-lite';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { Text, TextWithSlot } from 'src/content/components';
 

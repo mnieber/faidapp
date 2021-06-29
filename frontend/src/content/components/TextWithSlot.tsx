@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite';
 import classnames from 'classnames';
-import { useDefaultProps, FC } from 'react-default-props-context';
+import { observer } from 'mobx-react-lite';
+import { FC, useDefaultProps } from 'react-default-props-context';
 import { Image } from 'src/content/components';
 import yaml from 'js-yaml';
 

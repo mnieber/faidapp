@@ -1,27 +1,20 @@
 import { setCallbacks } from 'aspiration';
-import {
-  facet,
-  getm,
-  mapDataToFacet,
-  installPolicies,
-  registerFacets,
-  ClassMemberT as CMT,
-} from 'skandha';
 import { cleanUpCtr } from 'react-default-props-context';
-import { makeCtrObservable } from 'skandha-mobx';
-import { getIds } from 'src/utils/ids';
+import * as Skandha from 'skandha';
+import { ClassMemberT as CMT, facet, getm } from 'skandha';
 import * as Facets from 'skandha-facets';
+import { Highlight, HighlightCbs } from 'skandha-facets/Highlight';
 import * as FacetPolicies from 'skandha-facets/policies';
 import {
+  handleSelectItem,
   Selection,
   SelectionCbs,
-  handleSelectItem,
 } from 'skandha-facets/Selection';
-import { Highlight, HighlightCbs } from 'skandha-facets/Highlight';
-
-import { MilestonesStore } from 'src/milestones/MilestonesStore';
+import { makeCtrObservable } from 'skandha-mobx';
 import { Inputs } from 'src/milestones/MilestonesState/facets/Inputs';
 import { Outputs } from 'src/milestones/MilestonesState/facets/Outputs';
+import { MilestonesStore } from 'src/milestones/MilestonesStore';
+import { getIds } from 'src/utils/ids';
 
 type PropsT = {
   milestonesStore: MilestonesStore;
@@ -57,7 +50,7 @@ export class MilestonesState {
     const Outputs_itemById = [Outputs, 'milestoneById', this] as CMT;
 
     const policies = [
-      mapDataToFacet(Outputs_display, getm(Inputs_items)),
+      Skandha.mapDataToFacet(Outputs_display, getm(Inputs_items)),
       // selection
       Facets.selectionUsesSelectableIds(getm(Outputs_display), getIds),
       Facets.selectionUsesItemLookUpTable(getm(Outputs_itemById)),
@@ -65,17 +58,18 @@ export class MilestonesState {
       Facets.highlightUsesItemLookUpTable(getm(Outputs_itemById)),
     ];
 
-    installPolicies(policies, this.milestones);
+    Skandha.installPolicies(policies, this.milestones);
   }
 
   destroy() {
+    cleanUpCtr(this);
     cleanUpCtr(this.milestones);
   }
 
   constructor(props: PropsT) {
-    registerFacets(this, {});
+    Skandha.registerFacets(this, {});
 
-    registerFacets(this.milestones, { name: 'Milestones' });
+    Skandha.registerFacets(this.milestones, { name: 'Milestones' });
     this._setMilestonesCallbacks(props);
     this._applyMilestonesPolicies(props);
     makeCtrObservable(this.milestones);

@@ -1,12 +1,10 @@
+import classnames from 'classnames';
 import { always, flow, map } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
-import { useDefaultProps, FC } from 'react-default-props-context';
+import { FC, useDefaultProps } from 'react-default-props-context';
 import { MetricListViewItem } from 'src/metrics/components';
 import { MetricT } from 'src/metrics/types';
-import classnames from 'classnames';
-import { resourceUrls } from 'src/metrics/MetricsStore';
-import { getResourceView } from 'src/utils/components/getResourceView';
-
+import { getResourceView } from 'src/utils/components';
 import './MetricListView.scss';
 
 type PropsT = {
@@ -15,15 +13,14 @@ type PropsT = {
 
 type DefaultPropsT = {
   metrics: MetricT[];
+  metricsResUrl: string;
 };
 
 export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
-    const resourceView = getResourceView({
-      resourceUrl: resourceUrls.metricById,
-    });
+    const resourceView = getResourceView({ resUrl: props.metricsResUrl });
     if (resourceView) return resourceView;
 
     const metricDivs = flow(

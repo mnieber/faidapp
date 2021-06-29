@@ -1,7 +1,7 @@
+import classnames from 'classnames';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { concat } from 'lodash/fp';
-import classnames from 'classnames';
 import { useDefaultProps, FC } from 'react-default-props-context';
 import { ProjectT } from 'src/projects/types';
 import { MilestoneT } from 'src/milestones/types';

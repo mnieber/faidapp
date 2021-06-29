@@ -1,15 +1,15 @@
-import { observable, makeObservable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { Api } from 'src/api/Api';
-import { ProjectStore } from 'src/projects/ProjectStore';
-import { MilestonesStore } from 'src/milestones/MilestonesStore';
-import { MetricsStore } from 'src/metrics/MetricsStore';
 import { storeConnectsToApi } from 'src/app/AppStore/policies';
+import { MetricsStore } from 'src/metrics/MetricsStore';
+import { MilestonesStore } from 'src/milestones/MilestonesStore';
+import { ProjectStore } from 'src/projects/ProjectStore';
 
 export class AppStore {
   @observable projectStore: ProjectStore;
   @observable milestonesStore: MilestonesStore;
   @observable metricsStore: MetricsStore;
-  api: Api = new Api();
+  @observable api: Api = new Api();
 
   constructor() {
     makeObservable(this);
