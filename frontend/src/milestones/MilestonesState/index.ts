@@ -1,5 +1,8 @@
 import { setCallbacks } from 'aspiration';
-import { cleanUpCtr } from 'react-default-props-context';
+import {
+  addCleanUpFunctionToCtr,
+  cleanUpCtr,
+} from 'react-default-props-context';
 import * as Skandha from 'skandha';
 import { ClassMemberT as CMT, facet, getm } from 'skandha';
 import * as Facets from 'skandha-facets';
@@ -10,7 +13,7 @@ import {
   Selection,
   SelectionCbs,
 } from 'skandha-facets/Selection';
-import { makeCtrObservable } from 'skandha-mobx';
+import { registerCtr } from 'skandha-mobx';
 import { Inputs } from 'src/milestones/MilestonesState/facets/Inputs';
 import { Outputs } from 'src/milestones/MilestonesState/facets/Outputs';
 import { MilestonesStore } from 'src/milestones/MilestonesStore';
@@ -63,18 +66,22 @@ export class MilestonesState {
 
   destroy() {
     cleanUpCtr(this);
-    cleanUpCtr(this.milestones);
   }
 
   constructor(props: PropsT) {
-    Skandha.registerFacets(this, {});
-
-    Skandha.registerFacets(this.milestones, { name: 'Milestones' });
-    this._setMilestonesCallbacks(props);
-    this._applyMilestonesPolicies(props);
-    makeCtrObservable(this.milestones);
-
-    // Finally, make this container observable
-    makeCtrObservable(this);
+    registerCtr({
+      ctr: this,
+      childCtrs: [
+        {
+          ctr: this.milestones,
+          details: { name: 'Milestones' },
+          initCtr: () => {
+            this._setMilestonesCallbacks(props);
+            this._applyMilestonesPolicies(props);
+            addCleanUpFunctionToCtr(this, () => cleanUpCtr(this.milestones));
+          },
+        },
+      ],
+    });
   }
 }
