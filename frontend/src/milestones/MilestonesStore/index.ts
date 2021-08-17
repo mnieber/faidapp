@@ -1,10 +1,10 @@
-import { forEach, values } from 'lodash/fp';
 import { action, makeObservable, observable } from 'mobx';
+import { forEach, values } from 'ramda';
 import { rsMap } from 'src/api/ResourceStateMap';
 import { MilestoneByIdT, MilestoneT } from 'src/milestones/types';
 import { isUpdatedRS, RST } from 'src/utils/RST';
 
-export const resourceUrls = {
+export const resUrls = {
   milestoneById: `MilestonesStore/milestoneById`,
 };
 
@@ -20,11 +20,8 @@ export class MilestonesStore {
       if (isUpdatedRS(rs)) {
         const milestones: MilestoneT[] = values(event.payload.milestones);
         this.addMilestones(milestones);
-        rsMap.registerRS(
-          rs,
-          milestones.map((x) => `${resourceUrls.milestoneById}/${x.id}`)
-        );
       }
+      rsMap.registerRS(rs, [resUrls.milestoneById]);
     }
   }
 

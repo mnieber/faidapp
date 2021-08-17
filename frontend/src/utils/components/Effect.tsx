@@ -1,11 +1,10 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import { merge } from 'ramda';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import useDeepCompareEffect from 'use-deep-compare-effect';
-import { merge } from 'lodash/fp';
-
-import { useSearchParams } from 'src/utils/useSearchParams';
 import { ObjT } from 'src/utils/types';
+import { useSearchParams } from 'src/utils/useSearchParams';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 
 interface IProps<ArgsT> {
   f: (args: ArgsT) => void | (() => void);
@@ -25,9 +24,13 @@ export const Effect: <ArgsT>(props: IProps<ArgsT>) => React.ReactElement =
     return <React.Fragment />;
   });
 
-export const EffectWithoutArgs: (props: {
+type EffectWithoutArgsPropsT = {
   f: () => void;
-}) => React.ReactElement = observer(({ f }) => {
+};
+
+export const EffectWithoutArgs: (
+  props: EffectWithoutArgsPropsT
+) => React.ReactElement = observer(({ f }) => {
   useDeepCompareEffect(() => {
     const cleanUpFunction = f();
     return cleanUpFunction;

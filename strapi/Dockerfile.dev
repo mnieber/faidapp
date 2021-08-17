@@ -5,15 +5,14 @@ ENV LANG=C.UTF-8
 
 # install dev pkg dependencies
 RUN apt-get update && apt-get install -y \
-    fish                ` # via :fish` \
-    make                ` # via :makefile` \
-    nano                ` # via :dockerfile` \
-    postgresql-client   ` # via :dockerfile` \
-    python3-pip         ` # via :dockerfile`
+    fish                ` # via fish` \
+    make                ` # via makefile` \
+    nano                ` # via dockerfile` \
+    postgresql-client   ` # via strapi` \
+    psycopg2-binary     ` # via strapi`
 
 # install dev pip dependencies
 RUN pip3 install \
-    pgcli==2.1.1        ` # via :dockerfile` \
-    psycopg2-binary     ` # via :dockerfile`
+    pgcli==2.1.1        ` # via strapi`
 
 WORKDIR /srv/app/src

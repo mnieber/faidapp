@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import { always, flow, map } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
+import { always, map, pipe } from 'ramda';
 import { FC, useDefaultProps } from 'react-default-props-context';
 import { MetricListViewItem } from 'src/metrics/components';
 import { MetricT } from 'src/metrics/types';
@@ -23,7 +23,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
     const resourceView = getResourceView({ resUrl: props.metricsResUrl });
     if (resourceView) return resourceView;
 
-    const metricDivs = flow(
+    const metricDivs = pipe(
       always(props.metrics),
       map((x: MetricT) => <MetricListViewItem key={x.id} metric={x} />)
     )();

@@ -7,13 +7,13 @@ const milestoneList = new schema.Array(milestone);
 const project = new schema.Entity('projects', { milestones: milestoneList });
 
 export class Api extends ApiBase {
-  loadProjectBySlug(slug: string) {
+  getProjectBySlug(slug: string) {
     return this._doQuery(
-      'loadProjectBySlug',
-      `query loadProjectBySlug(
-      $slug: String
-    ) {
-      project(
+      'getProjectBySlug',
+      `query getProjectBySlug(
+        $slug: String
+      ) {
+      projectBySlug(
         slug: $slug
       ) {
         id
@@ -29,8 +29,10 @@ export class Api extends ApiBase {
         }
       }
     }`,
-      { slug },
-      (response: ObjT) => normalize(response.project, project).entities,
+      {
+        slug,
+      },
+      (response: ObjT) => normalize(response.projectBySlug, project).entities,
       (error: ObjT) => error.response.errors[0].message
     );
   }

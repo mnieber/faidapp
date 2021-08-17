@@ -1,11 +1,11 @@
+Django
+dateparser
 django-cors-headers
 django-environ
 django-graphql-auth
-Django
-psycopg2
 graphene-django
-slackclient
+munch
+psycopg2
 pydantic
 requests
-munch
-dateparser
+slackclient

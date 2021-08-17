@@ -8,27 +8,28 @@ services:
     command: sleep infinity
     depends_on:
     - postgres
-    env_file:
-    - ./env/postgres.env
-    - ./env/backend.env
+    environment:
+    - DJANGO_SETTINGS_MODULE=app.settings.dev
     image: faidapp_backend_dev
     ports:
     - 8000:8000
     volumes:
     - ./backend:/app/src
-    - $HOME/.config/pudb:/root/.config/pudb
     - /opt/faidapp/backend/fish_history:/root/.local/share/fish/fish_history
+    - /opt/faidapp/backend/static:/app/static
     - /opt/faidapp/backend/pytest_report.html:/app/pytest_report.html
     - /opt/faidapp/backend/assets:/app/assets
+    - $HOME/.config/pudb:/root/.config/pudb
     - /opt/faidapp/backend/ipython:/root/.ipython
-    - backend_site_packages:/usr/local/lib/python3.9/site-packages
-    - backend_usr_local_bin:/usr/local/bin
+    - backend_venv:/app/env
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
     command: sleep infinity
     depends_on: []
+    environment:
+    - CHOKIDAR_USEPOLLING=true
     image: faidapp_frontend_dev
     ports:
     - 3000:3000
@@ -52,7 +53,6 @@ services:
     - postgres
     env_file:
     - ./env/strapi.env
-    - ./env/postgres.env
     image: faidapp_strapi_dev
     ports:
     - 1337:1337
@@ -62,6 +62,5 @@ services:
     - ./strapi:/srv/app/src
     - /opt/faidapp/strapi/fish_history:/root/.local/share/fish/fish_history
 volumes:
-  backend_site_packages: {}
-  backend_usr_local_bin: {}
+  backend_venv: {}
   postgres_data: {}

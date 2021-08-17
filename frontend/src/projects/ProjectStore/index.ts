@@ -4,7 +4,7 @@ import { rsMap } from 'src/api/ResourceStateMap';
 import { ProjectT } from 'src/projects/types';
 import { isUpdatedRS, RST } from 'src/utils/RST';
 
-export const resourceUrls = {
+export const resUrls = {
   project: `ProjectStore/project`,
 };
 
@@ -20,7 +20,7 @@ export class ProjectStore {
       if (isUpdatedRS(rs)) {
         this.project = values(event.payload.projects)[0];
       }
-      rsMap.registerRS(rs, [resourceUrls.project]);
+      rsMap.registerRS(rs, [resUrls.project]);
     }
   }
 }

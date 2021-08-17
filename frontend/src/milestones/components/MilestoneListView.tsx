@@ -1,9 +1,10 @@
 import classnames from 'classnames';
-import { always, concat, flow, map, sortBy } from 'lodash/fp';
 import { observer } from 'mobx-react-lite';
-import { useDefaultProps, FC } from 'react-default-props-context';
+import { always, concat, map, pipe, sortBy } from 'ramda';
+import { FC, useDefaultProps } from 'react-default-props-context';
 import { MilestoneListViewItem } from 'src/milestones/components';
 import { MilestoneT } from 'src/milestones/types';
+import { getResourceView } from 'src/utils/components';
 import { Selection } from 'skandha-facets/Selection';
 import { Highlight } from 'skandha-facets/Highlight';
 
@@ -18,12 +19,17 @@ type DefaultPropsT = {
   milestones: MilestoneT[];
   milestonesSelection: Selection;
   milestonesHighlight: Highlight;
+  milestonesResUrl: string;
 };
 
 export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
-    const milestoneDivs = flow(
+
+    const resourceView = getResourceView({ resUrl: props.milestonesResUrl });
+    if (resourceView) return resourceView;
+
+    const milestoneDivs = pipe(
       always(props.milestones),
       sortBy((x: MilestoneT) => !x.isCompleted),
       map((milestone) => (

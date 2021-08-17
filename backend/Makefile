@@ -1,5 +1,10 @@
 runserver:
-	python manage.py runserver 0.0.0.0:8000
+	python manage.py runserver 0.0.0.0:8000 --nostatic
+
+create-db:
+	env PGPASSWORD=dev psql -h postgres -d postgres -U postgres -c "CREATE USER django WITH CREATEDB PASSWORD 'dev';"
+	env PGPASSWORD=dev psql -h postgres -d postgres -U django -c "CREATE DATABASE django;"
+	env PGPASSWORD=dev psql -h postgres -d postgres -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE django TO django;"
 
 pip-compile:
 	pip-compile requirements.in -o requirements.txt
@@ -7,15 +12,3 @@ pip-compile:
 
 install:
 	pip install -r requirements.dev.txt
-
-set-superuser:
-	python manage.py createsuperuser
-
-show-urls:
-	python manage.py show_urls
-
-shell:
-	python manage.py shell_plus
-
-pytype:
-	watchmedo shell-command --command="flock -n test.lock pytype -d import-error" --patterns="*.py" --recursive .

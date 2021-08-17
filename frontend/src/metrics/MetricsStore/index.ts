@@ -1,9 +1,10 @@
-import { action, observable, makeObservable } from 'mobx';
-import { forEach } from 'lodash/fp';
+import { action, makeObservable, observable } from 'mobx';
+import { values } from 'ramda';
+import { rsMap } from 'src/api/ResourceStateMap';
+import { MetricByIdT, MetricT } from 'src/metrics/types';
+import { isUpdatedRS, RST } from 'src/utils/RST';
 
-import { MetricT, MetricByIdT } from 'src/metrics/types';
-
-export const resourceUrls = {
+export const resUrls = {
   metricById: `MetricsStore/metricById`,
 };
 
@@ -14,7 +15,14 @@ export class MetricsStore {
     makeObservable(this);
   }
 
-  @action onLoadData(event: any) {}
+  @action onLoadData(event: any, rs: RST, queryName: string) {
+    if (queryName === 'getMetrics') {
+      if (isUpdatedRS(rs)) {
+        this.addMetrics(values(event.payload.data.metrics));
+      }
+      rsMap.registerRS(rs, [resUrls.metricById]);
+    }
+  }
 
   @action addMetrics = (metrics: MetricT[]) => {
     forEach((metric: MetricT) => {

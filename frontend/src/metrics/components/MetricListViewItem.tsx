@@ -7,6 +7,7 @@ import './MetricListViewItem.scss';
 export type PropsT = {
   metric: MetricT;
   className?: any;
+  onMouseDown?: any;
 };
 
 export const MetricListViewItem: React.FC<PropsT> = observer(
@@ -17,6 +18,7 @@ export const MetricListViewItem: React.FC<PropsT> = observer(
           'MetricListViewItem flex flex-row flex-1 mb-2',
           props.className
         )}
+        onMouseDown={props.onMouseDown}
       >
         {props.metric.name}
       </div>

@@ -4,17 +4,19 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     depends_on:
     - postgres
+    environment:
+    - DJANGO_SETTINGS_MODULE=app.settings.prod
     image: faidapp_backend
     ports:
-    - 3001:3001
+    - 8000:8000
     volumes: []
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     depends_on: []
     image: faidapp_frontend
     ports:
@@ -31,7 +33,7 @@ services:
   strapi:
     build:
       context: ./strapi
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     depends_on:
     - postgres
     env_file:

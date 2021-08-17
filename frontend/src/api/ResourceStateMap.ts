@@ -1,20 +1,22 @@
-import { forEach } from 'lodash/fp';
 import { action, makeObservable, observable } from 'mobx';
+import { forEach } from 'ramda';
 import { resetRS, RST } from 'src/utils/RST';
 
 export class ResourceStateMap {
-  @observable rsByResUrl: { [key: string]: RST } = {};
+  @observable resourceStateByResUrl: { [key: string]: RST } = {};
 
   constructor() {
     makeObservable(this);
   }
 
-  @action registerRS(rs: RST, resUrls: string[]) {
-    forEach((resUrl: string) => (this.rsByResUrl[resUrl] = rs))(resUrls);
+  @action registerRS(state: RST, resUrls: string[]) {
+    forEach((resUrl: string) => {
+      this.resourceStateByResUrl[resUrl] = state;
+    })(resUrls);
   }
 
   getRS(resUrl: string): RST {
-    return this.rsByResUrl[resUrl] ?? resetRS();
+    return this.resourceStateByResUrl[resUrl] ?? resetRS();
   }
 }
 

@@ -11,7 +11,7 @@ import './MilestoneListViewItem.scss';
 export type PropsT = {
   milestone: MilestoneT;
   className?: any;
-  onMouseDown: any;
+  onMouseDown?: any;
 };
 
 export const MilestoneListViewItem: React.FC<PropsT> = observer(

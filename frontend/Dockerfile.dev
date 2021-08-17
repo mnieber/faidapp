@@ -2,6 +2,6 @@ FROM node:14-alpine
 
 # install dev pkg dependencies
 RUN apk update && apk add \
-    fish                ` # via :fish`
+    fish                ` # via fish`
 
 WORKDIR /app/src
