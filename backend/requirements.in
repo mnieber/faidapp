@@ -2,9 +2,7 @@ Django
 dateparser
 django-cors-headers
 django-environ
-django-graphql-auth
 graphene-django
-munch
 psycopg2
 pydantic
 requests

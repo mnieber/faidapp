@@ -14,7 +14,7 @@ env = environ.Env()
 
 ROOT_URLCONF = "app.urls"
 
-CORS_URLS_REGEX = r"^/(graphql|auth)/.*$"
+CORS_URLS_REGEX = r"^/(auth|graphql)/.*$"
 
 WSGI_APPLICATION = "app.wsgi.application"
 
@@ -28,7 +28,7 @@ CACHES = {
 }
 
 GRAPHENE = {
-    "SCHEMA": "app.schema.schema",
+    "SCHEMA": "api.schema.schema",
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],

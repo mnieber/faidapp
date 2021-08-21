@@ -1,4 +1,4 @@
-export { Content } from './Content';
-export { Image } from './Image';
-export { Text } from './Text';
-export { TextWithSlot } from './TextWithSlot';
+export { ContentView } from './ContentView';
+export { ImageView } from './ImageView';
+export { TextView } from './TextView';
+export { TextWithSlotView } from './TextWithSlotView';

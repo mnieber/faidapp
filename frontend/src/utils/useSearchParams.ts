@@ -1,5 +1,5 @@
+import { fromPairs } from 'ramda';
 import { useHistory } from 'react-router-dom';
-import { fromPairs } from 'lodash/fp';
 
 export interface SearchParamsT {
   get: (name: string) => string | null;

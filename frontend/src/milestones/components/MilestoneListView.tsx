@@ -2,12 +2,11 @@ import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { always, concat, map, pipe, sortBy } from 'ramda';
 import { FC, useDefaultProps } from 'react-default-props-context';
+import { Highlight } from 'skandha-facets/Highlight';
+import { Selection } from 'skandha-facets/Selection';
 import { MilestoneListViewItem } from 'src/milestones/components';
 import { MilestoneT } from 'src/milestones/types';
 import { getResourceView } from 'src/utils/components';
-import { Selection } from 'skandha-facets/Selection';
-import { Highlight } from 'skandha-facets/Highlight';
-
 import './MilestoneListView.scss';
 
 type PropsT = {
@@ -19,14 +18,14 @@ type DefaultPropsT = {
   milestones: MilestoneT[];
   milestonesSelection: Selection;
   milestonesHighlight: Highlight;
-  milestonesResUrl: string;
+  projectResUrl: string;
 };
 
 export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
-    const resourceView = getResourceView({ resUrl: props.milestonesResUrl });
+    const resourceView = getResourceView({ resUrl: props.projectResUrl });
     if (resourceView) return resourceView;
 
     const milestoneDivs = pipe(
@@ -40,7 +39,7 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
             'MilestonesListViewItem--highlighted':
               milestone && props.milestonesHighlight.id === milestone.id,
           })}
-          onMouseDown={(e: any) => {
+          onClick={(e: any) => {
             props.milestonesSelection.selectItem({
               itemId: milestone.id,
               isShift: e.shiftKey,
@@ -55,7 +54,8 @@ export const MilestoneListView: FC<PropsT, DefaultPropsT> = observer(
     return (
       <div
         className={classnames(
-          'MilestoneListView flex flex-row w-full',
+          'MilestoneListView',
+          'flex flex-row w-full',
           props.className
         )}
       >

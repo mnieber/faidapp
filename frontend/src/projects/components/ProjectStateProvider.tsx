@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cleanUpCtr, CtrProvider } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
-import { resourceUrls } from 'src/projects/ProjectStore';
+import { resUrls } from 'src/projects/ProjectStore';
 
 type PropsT = React.PropsWithChildren<{}>;
 
@@ -17,7 +17,7 @@ export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
   const getDefaultProps = (state: any) => {
     return {
       project: () => projectStore.project,
-      projectResUrl: () => resourceUrls.project,
+      projectResUrl: () => resUrls.project,
     };
   };
 

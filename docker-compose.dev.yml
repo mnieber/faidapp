@@ -8,6 +8,9 @@ services:
     command: sleep infinity
     depends_on:
     - postgres
+    env_file:
+    - ./env/postgres.env
+    - ./env/backend.env
     environment:
     - DJANGO_SETTINGS_MODULE=app.settings.dev
     image: faidapp_backend_dev
@@ -35,6 +38,7 @@ services:
     - 3000:3000
     volumes:
     - ./frontend:/app/src
+    - /opt/faidapp/frontend/fish_history:/root/.local/share/fish/fish_history
   postgres:
     depends_on: []
     env_file:

@@ -1,5 +1,4 @@
 from app.models import Entity
-from models.types import ContentModelT
 
 
 class ModelClass(Entity):
@@ -11,5 +10,5 @@ class ModelClass(Entity):
         raise Exception("Not implemented")
 
     @classmethod
-    def get_defaults_from_content_model(cls, contentModel: ContentModelT):
+    def get_defaults_from_content_model(cls, contentModel):
         raise Exception("Not implemented")

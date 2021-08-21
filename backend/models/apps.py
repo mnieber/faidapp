@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class Models(AppConfig):
+class ModelsConfig(AppConfig):
     name = "models"

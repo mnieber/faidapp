@@ -11,7 +11,7 @@ import './MilestoneListViewItem.scss';
 export type PropsT = {
   milestone: MilestoneT;
   className?: any;
-  onMouseDown?: any;
+  onClick?: any;
 };
 
 export const MilestoneListViewItem: React.FC<PropsT> = observer(
@@ -19,10 +19,10 @@ export const MilestoneListViewItem: React.FC<PropsT> = observer(
     return (
       <div
         className={classnames(
-          'MilestoneListViewItem flex flex-row',
+          'MilestoneListViewItem', 'flex flex-row',
           props.className
         )}
-        onMouseDown={props.onMouseDown}
+        onClick={props.onClick}
       >
         {props.milestone.isCompleted ? (
           <CheckCircleOutlined className="MilestonesListViewItem__Icon text-2xl" />

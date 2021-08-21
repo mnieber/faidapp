@@ -5,7 +5,6 @@ import dateparser
 from django.db import models
 
 from models.models import ModelClass
-from models.types import ContentModelT
 from projects.models import Project
 
 
@@ -22,14 +21,14 @@ class Milestone(ModelClass):
         return "milestones"
 
     @classmethod
-    def get_defaults_from_content_model(cls, content_model: ContentModelT):
-        name = content_model.entry.name
-        project_id = UUID(content_model.entry.project.uid)
+    def get_defaults_from_content_model(cls, content_model_dict):
+        name = content_model_dict["entry"]["name"]
+        project_id = UUID(content_model_dict["entry"]["project"]["uid"])
         project = Project.objects.get(id=project_id)
-        content = json.dumps(content_model.entry)
+        content = json.dumps(content_model_dict["entry"])
 
         return dict(
-            created=dateparser.parse(content_model.created_at),
+            created=dateparser.parse(content_model_dict["created_at"]),
             name=name,
             project=project,
             content=content,

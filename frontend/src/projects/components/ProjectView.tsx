@@ -6,9 +6,12 @@ import { FC, useDefaultProps } from 'react-default-props-context';
 import { Highlight } from 'skandha-facets/Highlight';
 import { Selection } from 'skandha-facets/Selection';
 import { MilestoneListView } from 'src/milestones/components';
-import { ProjectBanner, ProjectDescription } from 'src/projects/components';
+import {
+  ProjectBannerView,
+  ProjectDescriptionView,
+} from 'src/projects/components';
 import { ProjectT } from 'src/projects/types';
-import { getResourceView } from 'src/utils/components/getResourceView';
+import { getResourceView } from 'src/utils/components';
 import './ProjectView.scss';
 
 type PropsT = {};
@@ -43,13 +46,13 @@ export const ProjectView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
 
   return (
     <div className="ProjectView flex flex-col w-full">
-      <ProjectBanner className="mb-4" />
+      <ProjectBannerView className="mb-4" />
       <div className="ProjectView__body">
         <MilestoneListView
           prefixDivs={[projectAsMilestone]}
           className="justify-center"
         />
-        <ProjectDescription />
+        <ProjectDescriptionView />
       </div>
     </div>
   );

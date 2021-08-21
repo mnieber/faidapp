@@ -8,11 +8,12 @@ RUN apt-get update && apt-get install -y \
     fish                ` # via fish` \
     make                ` # via makefile` \
     nano                ` # via dockerfile` \
-    postgresql-client   ` # via strapi` \
-    psycopg2-binary     ` # via strapi`
+    postgresql-client   ` # via strapi`
+
+RUN apt-get install -y python-pip
 
 # install dev pip dependencies
-RUN pip3 install \
+RUN pip install \
     pgcli==2.1.1        ` # via strapi`
 
 WORKDIR /srv/app/src

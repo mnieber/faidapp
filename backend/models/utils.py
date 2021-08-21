@@ -7,15 +7,15 @@ from milestones.models import Milestone
 from projects.models import Project
 
 
-def get_model_id_from_content_model(content_model):
+def get_model_id_from_content_model(content_model_dict):
     try:
-        return UUID(content_model.entry.uid)
+        return UUID(content_model_dict["entry"]["uid"])
     except ValueError:
         return None
 
 
-def get_model_class_from_content_model(content_model):
-    model_name = getattr(content_model, "model", None)
+def get_model_class_from_content_model(content_model_dict):
+    model_name = content_model_dict.get("model", None)
     if model_name == "project":
         return Project
     if model_name == "milestone":

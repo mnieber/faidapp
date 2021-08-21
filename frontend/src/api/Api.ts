@@ -13,22 +13,22 @@ export class Api extends ApiBase {
       `query getProjectBySlug(
         $slug: String
       ) {
-      projectBySlug(
-        slug: $slug
-      ) {
-        id
-        name
-        imageHash
-        imageProps
-        content
-        milestones {
-          id
-          name
+        projectBySlug(
+          slug: $slug
+        ) {
           content
-          isCompleted
+          id
+          imageHash
+          imageProps
+          milestones {
+            id
+            name
+            content
+            isCompleted
+          }
+          name
         }
-      }
-    }`,
+      }`,
       {
         slug,
       },

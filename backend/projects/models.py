@@ -4,7 +4,6 @@ import dateparser
 from django.db import models
 
 from models.models import ModelClass
-from models.types import ContentModelT
 
 
 class Project(ModelClass):
@@ -19,20 +18,21 @@ class Project(ModelClass):
         return "projects"
 
     @classmethod
-    def get_defaults_from_content_model(cls, content_model: ContentModelT):
-        name = content_model.entry.name
-        slug = content_model.entry.slug
-        content = json.dumps(content_model.entry)
+    def get_defaults_from_content_model(cls, content_model_dict: dict):
+        name = content_model_dict["entry"]["name"]
+        slug = content_model_dict["entry"]["slug"]
+        content = json.dumps(content_model_dict["entry"])
         image_hash = (
-            content_model.entry.image.hash + content_model.entry.image.ext
-            if content_model.entry.image
+            content_model_dict["entry"]["image"]["hash"]
+            + content_model_dict["entry"]["image"]["ext"]
+            if content_model_dict["entry"]["image"]
             else None
         )
         return dict(
-            created=dateparser.parse(content_model.created_at),
+            created=dateparser.parse(content_model_dict["created_at"]),
             name=name,
             slug=slug,
             content=content,
             image_hash=image_hash,
-            image_props=content_model.entry.imageProps,
+            image_props=content_model_dict["entry"]["imageProps"],
         )

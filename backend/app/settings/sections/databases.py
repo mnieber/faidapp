@@ -8,15 +8,12 @@ env = environ.Env()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("POSTGRES_DB"),
-        # The following settings are not used with sqlite3:
-        "USER": env("POSTGRES_USER"),
+        "NAME": "django",
+        "USER": "django",
         "PASSWORD": env("POSTGRES_PASSWORD"),
         "HOST": env("POSTGRES_HOST"),
         "PORT": env("POSTGRES_PORT"),
     },
 }
 
-MIGRATION_MODULES = {
-    "todo": "tasks.migrations_todo",
-}
+MIGRATION_MODULES = {}

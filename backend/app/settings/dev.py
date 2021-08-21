@@ -12,7 +12,7 @@ ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "yl(y9&y&3g)0a&9i7@ehmdg)f_)ny207lb*r12=9^w52z=d-x)"
+SECRET_KEY = "553b5bfe-862e-4226-9648-a5718f7120de"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 

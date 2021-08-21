@@ -1,5 +1,5 @@
-import { map } from 'lodash/fp';
 import { toJS } from 'mobx';
+import { map } from 'ramda';
 
 const is_logging = process.env.NODE_ENV === 'development';
 

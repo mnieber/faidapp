@@ -33,7 +33,7 @@ export const MetricListView: FC<PropsT, DefaultPropsT> = observer(
     return (
       <div
         className={classnames(
-          'MetricListView flex flex-col w-full',
+          'MetricListView', 'flex flex-col w-full',
           props.className
         )}
       >

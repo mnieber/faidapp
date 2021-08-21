@@ -12,17 +12,18 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "corsheaders",
     "django_extensions",
+    "django_rtk_green",
     "graphene_django",
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
-    "graphql_auth",
 ]
 
 LOCAL_APPS = [
-    "app.apps.MainAppConfig",
+    "api.apps.ApiConfig",
+    "app.apps.AppConfig",
+    "milestones.apps.MilestonesConfig",
+    "models.apps.ModelsConfig",
+    "projects.apps.ProjectsConfig",
     "users.apps.UsersConfig",
-    "models.apps.Models",
-    "projects.apps.Projects",
-    "milestones.apps.Milestones",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
