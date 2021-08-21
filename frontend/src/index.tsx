@@ -1,14 +1,13 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { setOptions } from 'skandha';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import { App } from 'src/app/components';
+import { logJS } from 'src/utils/logging';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import './uikit.scss';
-import { logJS } from 'src/utils/logging';
-import { setOptions } from 'skandha';
 
 // @ts-ignore
 window.logJS = logJS;

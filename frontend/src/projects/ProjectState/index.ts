@@ -14,16 +14,13 @@ import {
   SelectionCbs,
 } from 'skandha-facets/Selection';
 import { registerCtr } from 'skandha-mobx';
-import { Inputs } from 'src/milestones/MilestonesState/facets/Inputs';
-import { Outputs } from 'src/milestones/MilestonesState/facets/Outputs';
-import { MilestonesStore } from 'src/milestones/MilestonesStore';
+import { Inputs } from 'src/projects/ProjectState/facets/Inputs';
+import { Outputs } from 'src/projects/ProjectState/facets/Outputs';
 import { getIds } from 'src/utils/ids';
 
-type PropsT = {
-  milestonesStore: MilestonesStore;
-};
+type PropsT = {};
 
-export class MilestonesState {
+export class ProjectState {
   @facet inputs = new Inputs();
   @facet outputs = new Outputs();
   milestones = {

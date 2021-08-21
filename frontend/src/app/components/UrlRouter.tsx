@@ -4,7 +4,6 @@ import React from 'react';
 import { Route, Router } from 'react-router-dom';
 import { LoadProjectBySlugEffect } from 'src/api/components';
 import { AuthSwitch } from 'src/auth/components';
-import { MilestonesStateProvider } from 'src/milestones/components';
 import { ProjectStateProvider, ProjectView } from 'src/projects/components';
 
 type PropsT = {};
@@ -17,10 +16,8 @@ export const UrlRouter: React.FC<PropsT> = observer((props: PropsT) => {
       <AuthSwitch />
       <Route path="/projects/:projectSlug">
         <ProjectStateProvider>
-          <MilestonesStateProvider>
-            <LoadProjectBySlugEffect />
-            <ProjectView />
-          </MilestonesStateProvider>
+          <LoadProjectBySlugEffect />
+          <ProjectView />
         </ProjectStateProvider>
       </Route>
     </Router>

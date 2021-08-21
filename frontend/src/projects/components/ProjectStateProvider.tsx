@@ -1,23 +1,51 @@
+import { reaction } from 'mobx';
 import * as React from 'react';
-import { cleanUpCtr, CtrProvider } from 'react-default-props-context';
+import { CtrProvider, FC, useDefaultProps } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
+import { ProjectState } from 'src/projects/ProjectState';
 import { resUrls } from 'src/projects/ProjectStore';
+import { lookUp } from 'src/utils/ids';
 
 type PropsT = React.PropsWithChildren<{}>;
 
-export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
-  const { projectStore } = useStore();
+type DefaultPropsT = {};
+
+export const ProjectStateProvider: FC<PropsT, DefaultPropsT> = (p: PropsT) => {
+  const props = useDefaultProps<PropsT, DefaultPropsT>(p);
+  const { projectStore, milestonesStore } = useStore();
 
   const createState = () => {
-    return {};
+    return new ProjectState({});
   };
 
-  const updateState = (state: any) => {};
+  const updateState = (state: ProjectState) => {
+    return reaction(
+      () => ({
+        project: projectStore.project,
+        milestones: lookUp(
+          projectStore.project?.milestones || [],
+          milestonesStore.milestoneById
+        ).filter((x) => x !== undefined),
+      }),
+      (inputs) => {
+        state.inputs.project = inputs.project;
+        state.inputs.milestones = inputs.milestones;
+      },
+      {
+        fireImmediately: true,
+      }
+    );
+  };
 
-  const getDefaultProps = (state: any) => {
+  const getDefaultProps = (state: ProjectState) => {
     return {
       project: () => projectStore.project,
       projectResUrl: () => resUrls.project,
+      projectState: () => state,
+      milestones: () => state.outputs.milestonesDisplay,
+      milestonesSelection: () => state.milestones.selection,
+      milestonesHighlight: () => state.milestones.highlight,
+      milestone: () => state.milestones.highlight.item,
     };
   };
 
@@ -25,7 +53,7 @@ export const ProjectStateProvider: React.FC<PropsT> = (props: PropsT) => {
     <CtrProvider
       createCtr={createState}
       updateCtr={updateState}
-      destroyCtr={(state: any) => cleanUpCtr(state)}
+      destroyCtr={(state: ProjectState) => state.destroy()}
       getDefaultProps={getDefaultProps}
     >
       {props.children}
