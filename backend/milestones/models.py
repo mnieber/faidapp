@@ -9,12 +9,10 @@ from projects.models import Project
 
 
 class Milestone(ModelClass):
+    content = models.JSONField()
     name = models.CharField(max_length=255, unique=True)
     is_completed = models.BooleanField(default=False)
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="milestones"
-    )
-    content = models.JSONField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     @classmethod
     def content_resource_name(cls):

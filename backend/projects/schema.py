@@ -16,11 +16,11 @@ class ProjectType(DjangoObjectType):
         return self.content
 
     def resolve_milestones(self, info, **kwargs):
-        return self.milestones.all()
+        return self.milestone_set.all()
 
 
 class Query(object):
-    project_by_slug = graphene.Field(ProjectType, slug=graphene.String())
+    get_project_by_slug = graphene.Field(ProjectType, slug=graphene.String())
 
-    def resolve_project_by_slug(self, info, slug, **kwargs):
+    def resolve_get_project_by_slug(self, info, slug, **kwargs):
         return Project.objects.get(slug=slug)

@@ -7,11 +7,11 @@ from models.models import ModelClass
 
 
 class Project(ModelClass):
+    content = models.JSONField()
+    image_hash = models.CharField(max_length=255, null=True, blank=True)
+    image_props = models.TextField(null=True, blank=True)
     name = models.CharField(max_length=255, unique=True)
     slug = models.CharField(max_length=255, unique=True)
-    image_hash = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    image_props = models.TextField(null=True, blank=True)
-    content = models.JSONField()
 
     @classmethod
     def content_resource_name(cls):
